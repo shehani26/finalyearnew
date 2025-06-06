@@ -1,0 +1,524 @@
+﻿@model ELDER_NUTRICIANTS.Models.ReportVM
+
+@{
+    ViewBag.Title = "Elder Profile";
+}
+
+<style>
+    .file-upload-container {
+        border: 1px dashed #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .preview-container {
+        border: 1px solid #eee;
+        border-radius: 6px;
+        padding: 15px;
+        background-color: white;
+    }
+
+    .preview-title {
+        color: #555;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .preview-content {
+        min-height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+        .preview-content img {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+        }
+
+        .preview-content .pdf-preview {
+            padding: 20px;
+            text-align: center;
+        }
+
+    .pdf-preview i {
+        font-size: 48px;
+        color: #e74c3c;
+    }
+
+    .file-info {
+        font-size: 0.8rem;
+    }
+
+    .profile-info-item {
+        margin-bottom: 1.5rem;
+    }
+
+        .profile-info-item label {
+            font-weight: 600;
+            color: #344767;
+            margin-bottom: 0.25rem;
+            display: block;
+            font-size: 0.875rem;
+        }
+
+        .profile-info-item p {
+            margin: 0;
+            padding: 0.5rem 0;
+            font-size: 1rem;
+            color: #67748e;
+            border-bottom: 1px solid #f0f2f5;
+        }
+
+    .profile-image-container {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 5px solid #f0f2f5;
+    }
+
+    .profile-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card-header.bg-light {
+        background-color: #f8f9fa !important;
+    }
+
+    .material-symbols-rounded {
+        vertical-align: middle;
+    }
+</style>
+
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
+                        <h6 class="text-white text-capitalize ps-3 mb-0">Elder Sugar Level Add</h6>
+                        <div class="d-flex align-items-center me-3">
+                            <a href="@Url.Action("EIndex", "Elder")" class="btn btn-white btn-sm">
+                                <i class="material-symbols-rounded me-1">arrow_back</i> Back to List
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <!-- Personal Information Card -->
+                            <div class="card mb-4">
+                                <div class="card-header bg-light p-3">
+                                    <h5 class="mb-0">
+                                        <i class="material-symbols-rounded me-2">person</i>
+                                        Elder Personal Information
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Full Name</label>
+                                                <p>@Model.ve.FULL_NAME</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Gender</label>
+                                                <p>@Model.ve.GENDER</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>NIC</label>
+                                                <p>@Model.ve.NIC</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Date of Birth</label>
+                                                <p>@Convert.ToDateTime(Model.ve.DOB).ToString("yyyy-MM-dd")</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Contact Number</label>
+                                                <p>@Model.ve.CONTACT_NO</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="profile-info-item">
+                                        <label>Address</label>
+                                        <p>@Model.ve.ADDRESS</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Guardian Information Card -->
+                            <div class="card">
+                                <div class="card-header bg-light p-3">
+                                    <h5 class="mb-0">
+                                        <i class="material-symbols-rounded me-2">contact_emergency</i>
+                                        Guardian Information
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Guardian Name</label>
+                                                <p>@Model.ve.G_FULL_NAME</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Relationship</label>
+                                                <p>@Model.ve.RELATIONSHIP</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Contact Number</label>
+                                                <p>@Model.ve.G_CONTACT_NO</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Email</label>
+                                                <p>@Model.ve.EMAIL</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Profile Image and Actions -->
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="card-header bg-light p-3">
+                                    <h5 class="mb-0">
+                                        <i class="material-symbols-rounded me-2">photo_camera</i>
+                                        Profile Photo
+                                    </h5>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="profile-image-container">
+                                        <img src="@Url.Content(Model.ve.PROFIL_PIC)" class="profile-image" alt="Profile Photo">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header bg-light p-3">
+                                    <h5 class="mb-0">
+                                        <i class="material-symbols-rounded me-2">settings</i>
+                                        Actions
+                                    </h5>
+                                </div>
+                                @using (Html.BeginForm("RCreate", "Elder", new { elid = @ViewBag.elderid }, FormMethod.Post, new { @id = "universityForm", @class = "form-enhanced", enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="card-body">
+
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">Glucose Level</label>
+                                                    @Html.TextBoxFor(model => model.GLUCOSE_LEVEL, new
+        {
+        @class = "form-control",
+        required = "required",
+        type = "number",
+        step = "any"  // This allows decimal values
+        })
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-static my-3">
+
+                                                    @Html.DropDownListFor(model => model.SOURCE, (SelectList)ViewBag.BloodRPTType, "-Select Source Type-", new
+                                      {
+                                          @class = "form-control",
+                                          required = "required"
+                                      })
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">Description</label>
+                                                    @Html.TextAreaFor(model => model.DESCRIPTION, new
+         {
+             @class = "form-control",
+             required = "required",
+             rows = 3,  // Optional: Set the number of rows for the textarea
+             cols = 30  // Optional: Set the number of columns for the textarea
+         })
+
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="file-upload-container my-3">
+                                                    <label class="form-label mb-2">Upload Report (Images or PDF only)</label>
+
+                                                    <!-- File input with accept attribute for images and PDF -->
+                                                    <div class="input-group">
+                                                        <input type="file" id="fileUpload" name="Img_File_F" class="form-control"
+                                                               accept="image/*,.pdf" required>
+                                                        <button class="btn btn-outline-secondary" type="button" id="clearFile">
+                                                            <i class="material-symbols-rounded">close</i> Clear
+                                                        </button>
+                                                    </div>
+
+                                                    <!-- Validation message -->
+                                                    <div class="invalid-feedback" id="fileValidation">
+                                                        Please upload a valid image or PDF file
+                                                    </div>
+
+                                                    <!-- Preview container -->
+                                                    <div class="preview-container mt-3" id="previewContainer" style="display:none;">
+                                                        <h6 class="preview-title">File Preview</h6>
+                                                        <div class="preview-content" id="previewContent"></div>
+                                                        <div class="file-info mt-2">
+                                                            <span id="fileName"></span>
+                                                            <span id="fileSize" class="text-muted ms-2"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="d-grid gap-2">
+                                            <button id="saveBtn" type="submit" class="btn btn-success w-100 mb-0">
+                                                <i class="material-symbols-rounded me-1">save</i> Save Elder Blood Sugar
+                                            </button>
+                                            <a href="@Url.Action("EIndex", "Elder")" class="btn btn-outline-secondary">
+                                                <i class="material-symbols-rounded me-1">arrow_back</i> Back to List
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+
+
+                        <div class="card">
+                            <div class="card-header bg-light p-3">
+                                <h5 class="mb-0">
+                                    <i class="material-symbols-rounded me-2">history</i>
+                                    Previous Reports
+                                </h5>
+                            </div>
+
+                            <div class="card-body">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th><strong>Glucose Level</strong></th>
+                                            <th><strong>Entered Doctor Username</strong></th>
+                                            <th><strong>Source</strong></th>
+                                            <th><strong>Description</strong></th>
+                                            <th><strong>Report Upload Date</strong></th>
+                                            <th><strong>Upload File</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.vebr)
+                                        {
+                                        <tr>
+                                            <td>@item.GLUCOSE_LEVEL</td>
+                                            <td>@item.RECORDED_BY</td>
+                                            <td>@item.SOURCE</td>
+                                            <td style="word-wrap: break-word; white-space: normal;">@item.DESCRIPTION</td>
+
+                                            <td>@Convert.ToDateTime(item.REPORT_UPLOAD_DATE).ToString("dd-MM-yyyy")</td>
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(item.REPORT))
+                                                {
+                                                    <a href="@Url.Content(item.REPORT)" download class="btn btn-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to download report">
+                                                        <i class="material-symbols-rounded me-1">download</i> Download Report
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="No report uploaded">
+                                                        <i class="material-symbols-rounded me-1">file_copy</i> No file uploaded
+                                                    </span>
+                                                }
+                                            </td>
+
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Toast notifications configuration
+        const toastConfig = {
+            closeButton: true,
+            newestOnTop: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            preventDuplicates: true,
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "5000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut"
+        };
+
+        toastr.options = toastConfig;
+
+        // Process different notification types
+        const notifications = [
+            { type: 'success', message: '@Html.Raw(Json.Encode(TempData["Alert"]))', title: "Success" },
+            { type: 'error', message: '@Html.Raw(Json.Encode(TempData["Alert1"]))', title: "Error" },
+            { type: 'info', message: '@Html.Raw(Json.Encode(TempData["InfoAlert"]))', title: "Information" },
+            { type: 'warning', message: '@Html.Raw(Json.Encode(TempData["WarningAlert"]))', title: "Warning" }
+        ];
+
+        notifications.forEach(notification => {
+            const message = notification.message;
+            if (message && message !== "null" && message !== "") {
+                toastr[notification.type](message, notification.title);
+            }
+        });
+    });
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileUpload = document.getElementById('fileUpload');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewContent = document.getElementById('previewContent');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const clearFile = document.getElementById('clearFile');
+        const fileValidation = document.getElementById('fileValidation');
+
+        fileUpload.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // Validate file type
+            const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
+            if (!validTypes.includes(file.type)) {
+                fileUpload.classList.add('is-invalid');
+                fileValidation.style.display = 'block';
+                return;
+            }
+
+            fileUpload.classList.remove('is-invalid');
+            fileValidation.style.display = 'none';
+
+            // Display file info
+            fileName.textContent = file.name;
+            fileSize.textContent = formatFileSize(file.size);
+
+            // Create preview
+            if (file.type.includes('image')) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    previewContent.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+                    previewContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else if (file.type === 'application/pdf') {
+                previewContent.innerHTML = `
+                <div class="pdf-preview">
+                    <i class="material-symbols-rounded">picture_as_pdf</i>
+                    <p>PDF Preview</p>
+                    <small>${file.name}</small>
+                </div>`;
+                previewContainer.style.display = 'block';
+            }
+        });
+
+        clearFile.addEventListener('click', function () {
+            fileUpload.value = '';
+            previewContainer.style.display = 'none';
+            fileUpload.classList.remove('is-invalid');
+            fileValidation.style.display = 'none';
+        });
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+
+        const initInputs = document.querySelectorAll('.input-group-outline input, .input-group-outline textarea');
+        initInputs.forEach(input => {
+            if (input.value !== '') {
+                input.parentElement.classList.add('is-filled');
+            }
+
+            input.addEventListener('focus', function () {
+                this.parentElement.classList.add('is-focused');
+            });
+
+            input.addEventListener('blur', function () {
+                this.parentElement.classList.remove('is-focused');
+                if (this.value !== '') {
+                    this.parentElement.classList.add('is-filled');
+                } else {
+                    this.parentElement.classList.remove('is-filled');
+                }
+            });
+        });
+    });
+</script>

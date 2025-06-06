@@ -1,0 +1,292 @@
+﻿@model ELDER_NUTRICIANTS.Models.AdminVM
+
+@{
+    ViewBag.Title = "ACreate";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
+                        <h6 class="text-white text-capitalize ps-3 mb-0">Add New Admin</h6>
+                        <div class="d-flex align-items-center me-3">
+                            <a href="@Url.Action("AIndex", "Home")" class="btn btn-white btn-sm">
+                                <i class="material-symbols-rounded me-1">arrow_back</i> Back to List
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-4">
+                    @using (Html.BeginForm("ACreate", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "caregiverForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="card">
+                                    <div class="card-header p-3 pb-0">
+                                        <h5 class="mb-0">Personal Information</h5>
+                                        <p class="text-sm mb-0">Enter admin's personal details</p>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">User Name</label>
+                                                    @Html.TextBoxFor(model => model.USER_NAME, new { @class = "form-control", required = "required" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">Full Name</label>
+                                                    @Html.TextBoxFor(model => model.FULL_NAME, new { @class = "form-control", required = "required" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">Email</label>
+                                                    @Html.TextBoxFor(model => model.EMAIL, new { @class = "form-control", type = "email", required = "required" })
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+
+                                <div class="card mt-4">
+                                    <div class="card-header p-3 pb-0">
+                                        <h5 class="mb-0">Account Information</h5>
+                                        <p class="text-sm mb-0">Set login credentials</p>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">Password</label>
+                                                    @Html.PasswordFor(model => model.PASSWORD, new
+                                                    {
+                 @class = "form-control",
+                 required = "required",
+                 minlength = "6",
+                 id = "Password",
+                 oninput = "validatePasswords()"
+             })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">Confirm Password</label>
+                                                    @Html.PasswordFor(model => model.CONFIRM_PASSWORD, new
+                                                    {
+                @class = "form-control",
+                required = "required",
+                id = "ConfirmPassword",
+                oninput = "validatePasswords()"
+            })
+                                                </div>
+                                            </div>
+                                            <small id="passwordError" class="text-danger" style="display:none;">
+                                                Passwords must match and be at least 6 characters long.
+                                            </small>
+                                        </div>
+                                        <div class="form-check form-switch ps-0">
+                                            <input class="form-check-input ms-auto mt-1" type="checkbox" id="showPassword">
+                                            <label class="form-check-label ms-2" for="showPassword">Show password</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-header p-3 pb-0">
+                                        <h5 class="mb-0">Profile Image</h5>
+                                        <p class="text-sm mb-0">Upload admin's photo</p>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="text-center mt-3">
+                                            <div class="avatar-preview mb-3">
+                                                <img src="/content/img/default-avatar.jpg" id="imagePreview" class="rounded-circle shadow-sm" width="150" height="150" style="object-fit: cover;">
+                                            </div>
+                                            <div class="input-group">
+                                                <label class="btn btn-outline-primary btn-sm mb-0" for="Img_File_F">
+                                                    <i class="material-symbols-rounded me-1">upload</i> Choose Image
+                                                </label>
+                                                @Html.TextBoxFor(model => model.Img_File_F, new { type = "file", @class = "form-control d-none", accept = "image/*" })
+                                                <span id="file-name" class="ms-2 text-sm text-secondary">No file chosen</span>
+                                            </div>
+                                            <p class="text-xs text-secondary mt-2">Recommended: Square image, 300x300 pixels or larger</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mt-4">
+
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex flex-column gap-2">
+                                            <button id="saveBtn" type="submit" class="btn btn-success w-100 mb-0" disabled>
+                                                <i class="material-symbols-rounded me-1">save</i> Save Admin
+                                            </button>
+                                            <a href="@Url.Action("AIndex", "Home")" class="btn btn-outline-secondary w-100 mb-0">
+                                                <i class="material-symbols-rounded me-1">cancel</i> Cancel
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Image preview functionality
+        document.getElementById('Img_File_F').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('file-name').textContent = file.name;
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('imagePreview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('file-name').textContent = 'No file chosen';
+                document.getElementById('imagePreview').src = '/content/img/default-avatar.jpg';
+            }
+        });
+
+        // Show/hide password functionality
+        document.getElementById('showPassword').addEventListener('change', function () {
+            const passwordField = document.getElementById('PASSWORD');
+            const confirmPasswordField = document.getElementById('CONFIRM_PASSWORD');
+
+            const type = this.checked ? 'text' : 'password';
+            passwordField.type = type;
+            confirmPasswordField.type = type;
+        });
+
+        // Form validation
+        document.getElementById('caregiverForm').addEventListener('submit', function (e) {
+            const password = document.getElementById('PASSWORD').value;
+            const confirmPassword = document.getElementById('CONFIRM_PASSWORD').value;
+
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Password Error',
+                    text: 'Passwords do not match. Please try again.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+
+        // Initialize floating labels for filled inputs
+        const initInputs = document.querySelectorAll('.input-group-outline input, .input-group-outline textarea');
+        initInputs.forEach(input => {
+            if (input.value !== '') {
+                input.parentElement.classList.add('is-filled');
+            }
+
+            input.addEventListener('focus', function () {
+                this.parentElement.classList.add('is-focused');
+            });
+
+            input.addEventListener('blur', function () {
+                this.parentElement.classList.remove('is-focused');
+                if (this.value !== '') {
+                    this.parentElement.classList.add('is-filled');
+                } else {
+                    this.parentElement.classList.remove('is-filled');
+                }
+            });
+        });
+    });
+
+
+    $(document).ready(function () {
+        function validatePasswords() {
+            const password = document.getElementById('Password').value;
+            const confirmPassword = document.getElementById('ConfirmPassword').value;
+            const errorMsg = document.getElementById('passwordError');
+            const saveBtn = document.getElementById('saveBtn');
+
+            if (password.length >= 6 && password === confirmPassword) {
+                errorMsg.style.display = 'none';
+                saveBtn.disabled = false;
+            } else {
+                errorMsg.style.display = 'inline';
+                saveBtn.disabled = true;
+            }
+        }
+
+        $('#Password, #ConfirmPassword').on('keyup change', function () {
+            validatePasswords();
+        });
+
+
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+    // Configuration for toast notifications
+    const toastConfig = {
+        closeButton: true,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "5000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    };
+
+    // Apply global configuration
+    toastr.options = toastConfig;
+
+    // Process different notification types
+    const notifications = [
+        { type: 'success', message: '@Html.Raw(Json.Encode(TempData["Alert"]))', title: "Success" },
+        { type: 'error', message: '@Html.Raw(Json.Encode(TempData["Alert1"]))', title: "Error" },
+        { type: 'info', message: '@Html.Raw(Json.Encode(TempData["InfoAlert"]))', title: "Information" },
+        { type: 'warning', message: '@Html.Raw(Json.Encode(TempData["WarningAlert"]))', title: "Warning" }
+    ];
+
+    // Process and display each notification if it exists
+    notifications.forEach(notification => {
+        const message = notification.message;
+        if (message && message !== "null" && message !== "") {
+            // Show toast with appropriate type
+            toastr[notification.type](message, notification.title);
+
+            // Log for debugging (optional)
+            console.log(`${notification.title} notification displayed: ${message}`);
+        }
+    });
+
+    // Add click handler to allow users to dismiss notifications manually
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.toast-close-button')) {
+            console.log('Notification manually dismissed by user');
+        }
+    });
+});
+</script>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="71c71f92944a4b82a21045fa0471c53e" Name="Diagram1">
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.CAREGIVER" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.DOCTOR" Width="1.5" PointX="3.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.DONETION_EVENT" Width="1.5" PointX="6" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.DONETION_EVENT_ITEMS" Width="1.5" PointX="8.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.ELDER" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.ELDER_CHECKUP" Width="1.5" PointX="6" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.ELDER_GURDIAN" Width="1.5" PointX="3" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.FEEDBACK" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.GLUCODE_READING" Width="1.5" PointX="6" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.GLUCOSE_READING_REPORT" Width="1.5" PointX="8.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.GROCERY_ITEM_NUTRICIANTS" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.GROCERY_ITEMS" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.HEALTH_ALERT" Width="1.5" PointX="3" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.HEALTH_PREDICTION" Width="1.5" PointX="3" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.INCREAMENT" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.MDCODE" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.MEAL_PLANS" Width="1.5" PointX="6" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.MEAL_PLANS_ITEMS" Width="1.5" PointX="8.25" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.ROOM_ASSIGNED" Width="1.5" PointX="9" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.ROOM" Width="1.5" PointX="6.75" PointY="25.375" IsExpanded="true" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_FEEDBACKS_CAREGIVER" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_ELDER_CHECKUP_DOCTOR" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_GLUCODE_READING_DOCTOR" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_MEAL_PLANS_DOCTOR" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_DONETION_EVENT_ITEMS_DONETION_EVENT" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_DONETION_EVENT_ITEMS_GROCERY_ITEMS" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_ELDER_CHECKUP_ELDER" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_ELDER_GURDIAN_ELDER" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_FEEDBACKS_ELDER" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_GLUCODE_READING_ELDER" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_GLUCOSE_READING_REPORT_ELDER" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_HEALTH_ALERT_ELDER" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_HEALTH_PREDICTION_ELDER" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_MEAL_PLANS_ELDER" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_ROOM_ASSIGNED_ELDER" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_GLUCOSE_READING_REPORT_GLUCODE_READING" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_GROCERY_ITEM_NUTRICIANTS_GROCERY_ITEMS" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_MEAL_PLANS_ITEMS_GROCERY_ITEMS" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_MEAL_PLANS_ITEMS_MEAL_PLANS" ManuallyRouted="false" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_ROOM_ASSIGNED_ROOMS" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.APP_USER" Width="1.5" PointX="8.375" PointY="9.75" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.COMPANY" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.V_ELDER" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.V_ELDER_BLOOD_RPT" Width="1.5" PointX="10.375" PointY="7.75" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.CAREGIVER_ASSIGN_ELDER" Width="1.5" PointX="3" PointY="17.375" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_CAREGIVER_ASSIGN_ELDER_CAREGIVER" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_CAREGIVER_ASSIGN_ELDER_ELDER" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.V_ASSIGN_CAREGIVER" Width="1.5" PointX="10.375" PointY="11.75" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.V_ASSIGN_ROOMS" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.ELDER_DEATH" Width="1.5" PointX="3" PointY="26.375" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_ELDER_DEATH_ELDER" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.GROCERY_ITEM_CATEGORY" Width="1.5" PointX="3.75" PointY="2.75" />
+        <AssociationConnector Association="ELDER_NUTRICIANTSModel.FK_GROCERY_ITEMS_GROCERY_ITEM_CATEGORY" />
+        <EntityTypeShape EntityType="ELDER_NUTRICIANTSModel.V_MEALS" Width="1.5" PointX="12.375" PointY="5.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

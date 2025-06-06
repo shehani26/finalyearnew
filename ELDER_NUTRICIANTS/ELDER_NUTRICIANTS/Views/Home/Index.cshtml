@@ -1,0 +1,264 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/assets/img/Nutri_BG_ICON.ico">
+    <link rel="icon" type="image/png" href="~/assets/img/Nutri_BG_ICON.ico">
+    <title>L'derly Nutri - Dashboard</title>
+    <!-- Bootstrap CSS -->
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .metric-card {
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border: none;
+        }
+
+            .metric-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .bmi-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .calorie-card {
+            background: linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%);
+        }
+
+        .weight-card {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+        }
+
+        .macro-card {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+        }
+
+        .meal-plan-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .metric-label {
+            font-size: 1rem;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
+        .macro-progress {
+            height: 10px;
+            border-radius: 5px;
+        }
+
+        .meal-plan-day {
+            background-color: rgba(255,255,255,0.7);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .meal-time {
+            font-weight: 600;
+            color: #343a40;
+            margin-bottom: 5px;
+        }
+
+        .meal-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: #6a11cb;
+        }
+
+        .nav-pills .nav-link {
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-4">
+        <!-- Header -->
+        <div class="dashboard-header p-4 mb-4 text-center">
+            <h1 class="display-5 fw-bold">YOUR PERSONAL SUMMARY</h1>
+            <p class="mb-0">L'derly Nutri</p>
+        </div>
+
+        <!-- Main Metrics Row -->
+        <div class="row mb-4">
+            <!-- BMI Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card metric-card bmi-card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="metric-label">Body Mass Index (BMI)</h5>
+                        <div class="metric-value text-primary">11.7</div>
+                        <div class="metric-label mb-3">BMI</div>
+                        <div class="alert alert-warning fw-bold">Your BMI: Underweight</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calorie Intake Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card metric-card calorie-card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="metric-label">Calorie Intake (per day)</h5>
+                        <div class="metric-value text-info">1500</div>
+                        <div class="metric-label mb-2">Calories</div>
+                        <div class="small text-muted">1500 (+/- 100)</div>
+                        <div class="small fw-bold">Per Day To Reach 70 lbs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weight Goal Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card metric-card weight-card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="metric-label">Milestone - 30-Day Weight</h5>
+                        <div class="metric-value text-success">62</div>
+                        <div class="metric-label mb-2">LBS</div>
+                        <div class="small text-muted">Achievable Weight Within First 30-Days: 62.19 lbs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Macronutrients Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card metric-card macro-card">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Macronutrient Ratios</h5>
+                        <div class="row text-center">
+                            <div class="col-md-4 mb-3">
+                                <div class="bg-white p-3 rounded">
+                                    <h6 class="text-danger">Carbohydrates</h6>
+                                    <div class="fw-bold">18.75g</div>
+                                    <div class="progress macro-progress mt-2">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 15%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="bg-white p-3 rounded">
+                                    <h6 class="text-primary">Proteins</h6>
+                                    <div class="fw-bold">48.73g</div>
+                                    <div class="progress macro-progress mt-2">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 40%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="bg-white p-3 rounded">
+                                    <h6 class="text-warning">Fats</h6>
+                                    <div class="fw-bold">136.67g</div>
+                                    <div class="progress macro-progress mt-2">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center text-muted small">Suggested: Daily Carb, Protein, And Fat Intake</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meal Plan Section -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card metric-card meal-plan-card">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold mb-4">Personalized Meal Plan</h5>
+
+                        <ul class="nav nav-pills mb-4 justify-content-center" id="mealPlanTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="week1-tab" data-bs-toggle="pill" data-bs-target="#week1" type="button">Week 01</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="week2-tab" data-bs-toggle="pill" data-bs-target="#week2" type="button">Week 02</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="week3-tab" data-bs-toggle="pill" data-bs-target="#week3" type="button">Week 03</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="week4-tab" data-bs-toggle="pill" data-bs-target="#week4" type="button">Week 04</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="week5-tab" data-bs-toggle="pill" data-bs-target="#week5" type="button">Week 05</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="week6-tab" data-bs-toggle="pill" data-bs-target="#week6" type="button">Week 06</button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="mealPlanContent">
+                            <div class="tab-pane fade show active" id="week1" role="tabpanel">
+                                <div class="meal-plan-day">
+                                    <div class="meal-time">BREAKFAST</div>
+                                    <div class="meal-item">Sausage and cheese breakfast casserole</div>
+
+                                    <div class="meal-time">SNACK</div>
+                                    <div class="meal-item">Guacamole Deviled Eggs</div>
+
+                                    <div class="meal-time">LUNCH</div>
+                                    <div class="meal-item">Spicy Chicken Club Lettuce Wraps - Low Carb and Gluten Free</div>
+
+                                    <div class="meal-time">SNACK</div>
+                                    <div class="meal-item">Barbecue Deviled Eggs</div>
+
+                                    <div class="meal-time">DINNER</div>
+                                    <div class="meal-item">Salmon with Rosemary Balsamic Sauce</div>
+                                </div>
+                            </div>
+                            <!-- Other weeks would go here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Update date and time
+        function updateDateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
+            document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US');
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+    </script>
+</body>
+</html>

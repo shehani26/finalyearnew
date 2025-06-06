@@ -1,0 +1,927 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ELDER_NUTRICIANTSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CAREGIVER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CAREGIVER_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FULL_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GENDER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="NIC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONTACT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PROFILE_IMG" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HIGHER_QULIFICATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="YEAR_OF_EXPERIENCE" Type="Int32" />
+    <Property Name="STATUS" Type="Int32" />
+    <Property Name="ENTER_DATE" Type="DateTime" Precision="3" />
+    <Property Name="ENTER_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UPDATE_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FEEDBACKS" Relationship="Self.FK_FEEDBACKS_CAREGIVER" FromRole="CAREGIVER" ToRole="FEEDBACKS" />
+    <NavigationProperty Name="CAREGIVER_ASSIGN_ELDER" Relationship="ELDER_NUTRICIANTSModel.FK_CAREGIVER_ASSIGN_ELDER_CAREGIVER" FromRole="CAREGIVER" ToRole="CAREGIVER_ASSIGN_ELDER" />
+  </EntityType>
+  <EntityType Name="DOCTOR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="D_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FULL_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GENDER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="SPECIALIZATION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MEDICAL_LICENSE_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONTACT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REGISTERED_HOSPITAL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="JOINED_DATE" Type="DateTime" Precision="0" />
+    <Property Name="STATUS" Type="Int32" />
+    <Property Name="PROFILE_IMAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ELDER_CHECKUP" Relationship="Self.FK_ELDER_CHECKUP_DOCTOR" FromRole="DOCTOR" ToRole="ELDER_CHECKUP" />
+    <NavigationProperty Name="GLUCODE_READING" Relationship="Self.FK_GLUCODE_READING_DOCTOR" FromRole="DOCTOR" ToRole="GLUCODE_READING" />
+    <NavigationProperty Name="MEAL_PLANS" Relationship="Self.FK_MEAL_PLANS_DOCTOR" FromRole="DOCTOR" ToRole="MEAL_PLANS" />
+  </EntityType>
+  <EntityType Name="DONETION_EVENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DONATION_EVENT_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DONATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="0" />
+    <Property Name="STATUS" Type="Int32" />
+    <NavigationProperty Name="DONETION_EVENT_ITEMS" Relationship="Self.FK_DONETION_EVENT_ITEMS_DONETION_EVENT" FromRole="DONETION_EVENT" ToRole="DONETION_EVENT_ITEMS" />
+  </EntityType>
+  <EntityType Name="DONETION_EVENT_ITEMS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DONETION_EVENT_ID" Type="Int32" />
+    <Property Name="GROCERY_ID" Type="Int32" />
+    <Property Name="QTY_IN_GRAMS" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DONETION_EVENT" Relationship="Self.FK_DONETION_EVENT_ITEMS_DONETION_EVENT" FromRole="DONETION_EVENT_ITEMS" ToRole="DONETION_EVENT" />
+    <NavigationProperty Name="GROCERY_ITEMS" Relationship="Self.FK_DONETION_EVENT_ITEMS_GROCERY_ITEMS" FromRole="DONETION_EVENT_ITEMS" ToRole="GROCERY_ITEMS" />
+  </EntityType>
+  <EntityType Name="ELDER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ELDER_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FULL_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="NIC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="GENDER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONTACT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IS_DEAD" Type="Int32" />
+    <Property Name="PROFIL_PIC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ROOM_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CURRENT_SUGAR_LEVEL" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CURRENT_SUGAR_LEVEL_ENTER_DATE" Type="DateTime" Precision="0" />
+    <Property Name="IS_DIABITCS" Type="Int32" />
+    <NavigationProperty Name="ELDER_CHECKUP" Relationship="Self.FK_ELDER_CHECKUP_ELDER" FromRole="ELDER" ToRole="ELDER_CHECKUP" />
+    <NavigationProperty Name="ELDER_GURDIAN" Relationship="Self.FK_ELDER_GURDIAN_ELDER" FromRole="ELDER" ToRole="ELDER_GURDIAN" />
+    <NavigationProperty Name="FEEDBACKS" Relationship="Self.FK_FEEDBACKS_ELDER" FromRole="ELDER" ToRole="FEEDBACKS" />
+    <NavigationProperty Name="GLUCODE_READING" Relationship="Self.FK_GLUCODE_READING_ELDER" FromRole="ELDER" ToRole="GLUCODE_READING" />
+    <NavigationProperty Name="GLUCOSE_READING_REPORT" Relationship="Self.FK_GLUCOSE_READING_REPORT_ELDER" FromRole="ELDER" ToRole="GLUCOSE_READING_REPORT" />
+    <NavigationProperty Name="HEALTH_ALERT" Relationship="Self.FK_HEALTH_ALERT_ELDER" FromRole="ELDER" ToRole="HEALTH_ALERT" />
+    <NavigationProperty Name="HEALTH_PREDICTION" Relationship="Self.FK_HEALTH_PREDICTION_ELDER" FromRole="ELDER" ToRole="HEALTH_PREDICTION" />
+    <NavigationProperty Name="MEAL_PLANS" Relationship="Self.FK_MEAL_PLANS_ELDER" FromRole="ELDER" ToRole="MEAL_PLANS" />
+    <NavigationProperty Name="ROOM_ASSIGNED" Relationship="Self.FK_ROOM_ASSIGNED_ELDER" FromRole="ELDER" ToRole="ROOM_ASSIGNED" />
+    <NavigationProperty Name="CAREGIVER_ASSIGN_ELDER" Relationship="ELDER_NUTRICIANTSModel.FK_CAREGIVER_ASSIGN_ELDER_ELDER" FromRole="ELDER" ToRole="CAREGIVER_ASSIGN_ELDER" />
+    <NavigationProperty Name="ELDER_DEATH" Relationship="ELDER_NUTRICIANTSModel.FK_ELDER_DEATH_ELDER" FromRole="ELDER" ToRole="ELDER_DEATH" />
+  </EntityType>
+  <EntityType Name="ELDER_CHECKUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="DOC_ID" Type="Int32" />
+    <Property Name="CHECKUP_DATE" Type="DateTime" Precision="0" />
+    <Property Name="PURPOSE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NEXT_FOLLOW_UP_DATE" Type="DateTime" Precision="0" />
+    <Property Name="STATUS" Type="Int32" />
+    <Property Name="CREATE_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="DOCTOR" Relationship="Self.FK_ELDER_CHECKUP_DOCTOR" FromRole="ELDER_CHECKUP" ToRole="DOCTOR" />
+    <NavigationProperty Name="ELDER" Relationship="Self.FK_ELDER_CHECKUP_ELDER" FromRole="ELDER_CHECKUP" ToRole="ELDER" />
+  </EntityType>
+  <EntityType Name="ELDER_GURDIAN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="E_GURDIAN_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="FULL_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="RELATIONSHIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONTACT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <NavigationProperty Name="ELDER" Relationship="Self.FK_ELDER_GURDIAN_ELDER" FromRole="ELDER_GURDIAN" ToRole="ELDER" />
+  </EntityType>
+  <EntityType Name="FEEDBACK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="CAREGIVER_ID" Type="Int32" />
+    <Property Name="FEEDBACK_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FEEDBACK_DESC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ADMIN_REPLY" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="REPLY_DATE" Type="DateTime" Precision="3" />
+    <Property Name="SUBMITED_DATE" Type="DateTime" Precision="0" />
+    <Property Name="FEEDBACK_ENTERED_USE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CAREGIVER" Relationship="Self.FK_FEEDBACKS_CAREGIVER" FromRole="FEEDBACKS" ToRole="CAREGIVER" />
+    <NavigationProperty Name="ELDER" Relationship="Self.FK_FEEDBACKS_ELDER" FromRole="FEEDBACKS" ToRole="ELDER" />
+  </EntityType>
+  <EntityType Name="GLUCODE_READING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="READING_DATE" Type="DateTime" Precision="0" />
+    <Property Name="GLUCOSE_LEVEL" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RECORDED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOC_ID" Type="Int32" />
+    <Property Name="SOURCE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="DOCTOR" Relationship="Self.FK_GLUCODE_READING_DOCTOR" FromRole="GLUCODE_READING" ToRole="DOCTOR" />
+    <NavigationProperty Name="ELDER" Relationship="Self.FK_GLUCODE_READING_ELDER" FromRole="GLUCODE_READING" ToRole="ELDER" />
+    <NavigationProperty Name="GLUCOSE_READING_REPORT" Relationship="Self.FK_GLUCOSE_READING_REPORT_GLUCODE_READING" FromRole="GLUCODE_READING" ToRole="GLUCOSE_READING_REPORT" />
+  </EntityType>
+  <EntityType Name="GLUCOSE_READING_REPORT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="GLUCODE_READING_ID" Type="Int32" />
+    <Property Name="REPORT_UPLOAD_DATE" Type="DateTime" Precision="3" />
+    <Property Name="REPORT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <NavigationProperty Name="ELDER" Relationship="Self.FK_GLUCOSE_READING_REPORT_ELDER" FromRole="GLUCOSE_READING_REPORT" ToRole="ELDER" />
+    <NavigationProperty Name="GLUCODE_READING" Relationship="Self.FK_GLUCOSE_READING_REPORT_GLUCODE_READING" FromRole="GLUCOSE_READING_REPORT" ToRole="GLUCODE_READING" />
+  </EntityType>
+  <EntityType Name="GROCERY_ITEM_NUTRICIANTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GROCERY_ITEMS_ID" Type="Int32" />
+    <Property Name="CALORIES_kcal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PROTEIN" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CARBS" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="SUGAR" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FIBER" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FAT_TOTAL" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FAT_SATURED" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CHOLESTROL" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="SODIUM" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="POTESSIUM" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IRON" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="VITAMIN_A" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="VITAMIN_C" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="GROCERY_ITEMS" Relationship="Self.FK_GROCERY_ITEM_NUTRICIANTS_GROCERY_ITEMS" FromRole="GROCERY_ITEM_NUTRICIANTS" ToRole="GROCERY_ITEMS" />
+  </EntityType>
+  <EntityType Name="GROCERY_ITEMS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CATEGORY_ID" Type="Int32" />
+    <Property Name="BRAND" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BARCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <Property Name="PICTURE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FOOD_GROUP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SOURCE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DATE" Type="DateTime" Precision="3" />
+    <Property Name="DOC_ID" Type="Int32" />
+    <Property Name="CREATE_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DONETION_EVENT_ITEMS" Relationship="Self.FK_DONETION_EVENT_ITEMS_GROCERY_ITEMS" FromRole="GROCERY_ITEMS" ToRole="DONETION_EVENT_ITEMS" />
+    <NavigationProperty Name="GROCERY_ITEM_NUTRICIANTS" Relationship="Self.FK_GROCERY_ITEM_NUTRICIANTS_GROCERY_ITEMS" FromRole="GROCERY_ITEMS" ToRole="GROCERY_ITEM_NUTRICIANTS" />
+    <NavigationProperty Name="MEAL_PLANS_ITEMS" Relationship="Self.FK_MEAL_PLANS_ITEMS_GROCERY_ITEMS" FromRole="GROCERY_ITEMS" ToRole="MEAL_PLANS_ITEMS" />
+    <NavigationProperty Name="GROCERY_ITEM_CATEGORY" Relationship="ELDER_NUTRICIANTSModel.FK_GROCERY_ITEMS_GROCERY_ITEM_CATEGORY" FromRole="GROCERY_ITEMS" ToRole="GROCERY_ITEM_CATEGORY" />
+  </EntityType>
+  <EntityType Name="HEALTH_ALERT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="ALERT_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SUGGESTED_ACTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NOTIFICATION_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ELDER" Relationship="Self.FK_HEALTH_ALERT_ELDER" FromRole="HEALTH_ALERT" ToRole="ELDER" />
+  </EntityType>
+  <EntityType Name="HEALTH_PREDICTION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="PREDICTION_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RISK_LEVEL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ELDER" Relationship="Self.FK_HEALTH_PREDICTION_ELDER" FromRole="HEALTH_PREDICTION" ToRole="ELDER" />
+  </EntityType>
+  <EntityType Name="INCREAMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NO" Type="Int32" Nullable="false" />
+    <Property Name="TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MDCODE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CODE" Type="Int32" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MEAL_PLANS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="PLAN_DATE" Type="DateTime" Precision="0" />
+    <Property Name="PLAN_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RECOMENDED_DOC_ID" Type="Int32" />
+    <Property Name="CREATE_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DOCTOR" Relationship="Self.FK_MEAL_PLANS_DOCTOR" FromRole="MEAL_PLANS" ToRole="DOCTOR" />
+    <NavigationProperty Name="ELDER" Relationship="Self.FK_MEAL_PLANS_ELDER" FromRole="MEAL_PLANS" ToRole="ELDER" />
+    <NavigationProperty Name="MEAL_PLANS_ITEMS" Relationship="Self.FK_MEAL_PLANS_ITEMS_MEAL_PLANS" FromRole="MEAL_PLANS" ToRole="MEAL_PLANS_ITEMS" />
+  </EntityType>
+  <EntityType Name="MEAL_PLANS_ITEMS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MEAL_PLAN_ID" Type="Int32" />
+    <Property Name="GROCEY_ID" Type="Int32" />
+    <Property Name="QUANTITY_IN_GRAMS" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="GROCERY_ITEMS" Relationship="Self.FK_MEAL_PLANS_ITEMS_GROCERY_ITEMS" FromRole="MEAL_PLANS_ITEMS" ToRole="GROCERY_ITEMS" />
+    <NavigationProperty Name="MEAL_PLANS" Relationship="Self.FK_MEAL_PLANS_ITEMS_MEAL_PLANS" FromRole="MEAL_PLANS_ITEMS" ToRole="MEAL_PLANS" />
+  </EntityType>
+  <EntityType Name="ROOM_ASSIGNED">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ROOM_ID" Type="Int32" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="ASSIGNED_DATE" Type="DateTime" Precision="0" />
+    <Property Name="RELEASED_DATE" Type="DateTime" Precision="0" />
+    <Property Name="ASSIGNED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <Property Name="ENTED_DATE" Type="DateTime" Precision="0" />
+    <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ELDER" Relationship="Self.FK_ROOM_ASSIGNED_ELDER" FromRole="ROOM_ASSIGNED" ToRole="ELDER" />
+    <NavigationProperty Name="ROOM" Relationship="Self.FK_ROOM_ASSIGNED_ROOMS" FromRole="ROOM_ASSIGNED" ToRole="ROOMS" />
+  </EntityType>
+  <EntityType Name="ROOM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ROOM_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FLOOR_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ROOM_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CAPACITY" Type="Int32" />
+    <Property Name="STATUS" Type="Int32" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="UPDATE_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ROOM_ASSIGNED" Relationship="Self.FK_ROOM_ASSIGNED_ROOMS" FromRole="ROOMS" ToRole="ROOM_ASSIGNED" />
+  </EntityType>
+  <Association Name="FK_FEEDBACKS_CAREGIVER">
+    <End Role="CAREGIVER" Type="Self.CAREGIVER" Multiplicity="0..1" />
+    <End Role="FEEDBACKS" Type="Self.FEEDBACK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAREGIVER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEEDBACKS">
+        <PropertyRef Name="CAREGIVER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ELDER_CHECKUP_DOCTOR">
+    <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="0..1" />
+    <End Role="ELDER_CHECKUP" Type="Self.ELDER_CHECKUP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ELDER_CHECKUP">
+        <PropertyRef Name="DOC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GLUCODE_READING_DOCTOR">
+    <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="0..1" />
+    <End Role="GLUCODE_READING" Type="Self.GLUCODE_READING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GLUCODE_READING">
+        <PropertyRef Name="DOC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MEAL_PLANS_DOCTOR">
+    <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="0..1" />
+    <End Role="MEAL_PLANS" Type="Self.MEAL_PLANS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MEAL_PLANS">
+        <PropertyRef Name="RECOMENDED_DOC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONETION_EVENT_ITEMS_DONETION_EVENT">
+    <End Role="DONETION_EVENT" Type="Self.DONETION_EVENT" Multiplicity="0..1" />
+    <End Role="DONETION_EVENT_ITEMS" Type="Self.DONETION_EVENT_ITEMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONETION_EVENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DONETION_EVENT_ITEMS">
+        <PropertyRef Name="DONETION_EVENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONETION_EVENT_ITEMS_GROCERY_ITEMS">
+    <End Role="GROCERY_ITEMS" Type="Self.GROCERY_ITEMS" Multiplicity="0..1" />
+    <End Role="DONETION_EVENT_ITEMS" Type="Self.DONETION_EVENT_ITEMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROCERY_ITEMS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DONETION_EVENT_ITEMS">
+        <PropertyRef Name="GROCERY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ELDER_CHECKUP_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="ELDER_CHECKUP" Type="Self.ELDER_CHECKUP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ELDER_CHECKUP">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ELDER_GURDIAN_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="ELDER_GURDIAN" Type="Self.ELDER_GURDIAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ELDER_GURDIAN">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FEEDBACKS_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="FEEDBACKS" Type="Self.FEEDBACK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEEDBACKS">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GLUCODE_READING_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="GLUCODE_READING" Type="Self.GLUCODE_READING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GLUCODE_READING">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GLUCOSE_READING_REPORT_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="GLUCOSE_READING_REPORT" Type="Self.GLUCOSE_READING_REPORT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GLUCOSE_READING_REPORT">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HEALTH_ALERT_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="HEALTH_ALERT" Type="Self.HEALTH_ALERT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HEALTH_ALERT">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HEALTH_PREDICTION_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="HEALTH_PREDICTION" Type="Self.HEALTH_PREDICTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HEALTH_PREDICTION">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MEAL_PLANS_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="MEAL_PLANS" Type="Self.MEAL_PLANS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MEAL_PLANS">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROOM_ASSIGNED_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="ROOM_ASSIGNED" Type="Self.ROOM_ASSIGNED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ROOM_ASSIGNED">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GLUCOSE_READING_REPORT_GLUCODE_READING">
+    <End Role="GLUCODE_READING" Type="Self.GLUCODE_READING" Multiplicity="0..1" />
+    <End Role="GLUCOSE_READING_REPORT" Type="Self.GLUCOSE_READING_REPORT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GLUCODE_READING">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GLUCOSE_READING_REPORT">
+        <PropertyRef Name="GLUCODE_READING_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GROCERY_ITEM_NUTRICIANTS_GROCERY_ITEMS">
+    <End Role="GROCERY_ITEMS" Type="Self.GROCERY_ITEMS" Multiplicity="0..1" />
+    <End Role="GROCERY_ITEM_NUTRICIANTS" Type="Self.GROCERY_ITEM_NUTRICIANTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROCERY_ITEMS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GROCERY_ITEM_NUTRICIANTS">
+        <PropertyRef Name="GROCERY_ITEMS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MEAL_PLANS_ITEMS_GROCERY_ITEMS">
+    <End Role="GROCERY_ITEMS" Type="Self.GROCERY_ITEMS" Multiplicity="0..1" />
+    <End Role="MEAL_PLANS_ITEMS" Type="Self.MEAL_PLANS_ITEMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROCERY_ITEMS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MEAL_PLANS_ITEMS">
+        <PropertyRef Name="GROCEY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MEAL_PLANS_ITEMS_MEAL_PLANS">
+    <End Role="MEAL_PLANS" Type="Self.MEAL_PLANS" Multiplicity="0..1" />
+    <End Role="MEAL_PLANS_ITEMS" Type="Self.MEAL_PLANS_ITEMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEAL_PLANS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MEAL_PLANS_ITEMS">
+        <PropertyRef Name="MEAL_PLAN_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROOM_ASSIGNED_ROOMS">
+    <End Role="ROOMS" Type="Self.ROOM" Multiplicity="0..1" />
+    <End Role="ROOM_ASSIGNED" Type="Self.ROOM_ASSIGNED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROOMS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ROOM_ASSIGNED">
+        <PropertyRef Name="ROOM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ELDER_NUTRICIANTSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CAREGIVERs" EntityType="Self.CAREGIVER" />
+    <EntitySet Name="DOCTORs" EntityType="Self.DOCTOR" />
+    <EntitySet Name="DONETION_EVENT" EntityType="Self.DONETION_EVENT" />
+    <EntitySet Name="DONETION_EVENT_ITEMS" EntityType="Self.DONETION_EVENT_ITEMS" />
+    <EntitySet Name="ELDERs" EntityType="Self.ELDER" />
+    <EntitySet Name="ELDER_CHECKUP" EntityType="Self.ELDER_CHECKUP" />
+    <EntitySet Name="ELDER_GURDIAN" EntityType="Self.ELDER_GURDIAN" />
+    <EntitySet Name="FEEDBACKS" EntityType="Self.FEEDBACK" />
+    <EntitySet Name="GLUCODE_READING" EntityType="Self.GLUCODE_READING" />
+    <EntitySet Name="GLUCOSE_READING_REPORT" EntityType="Self.GLUCOSE_READING_REPORT" />
+    <EntitySet Name="GROCERY_ITEM_NUTRICIANTS" EntityType="Self.GROCERY_ITEM_NUTRICIANTS" />
+    <EntitySet Name="GROCERY_ITEMS" EntityType="Self.GROCERY_ITEMS" />
+    <EntitySet Name="HEALTH_ALERT" EntityType="Self.HEALTH_ALERT" />
+    <EntitySet Name="HEALTH_PREDICTION" EntityType="Self.HEALTH_PREDICTION" />
+    <EntitySet Name="INCREAMENTs" EntityType="Self.INCREAMENT" />
+    <EntitySet Name="MDCODEs" EntityType="Self.MDCODE" />
+    <EntitySet Name="MEAL_PLANS" EntityType="Self.MEAL_PLANS" />
+    <EntitySet Name="MEAL_PLANS_ITEMS" EntityType="Self.MEAL_PLANS_ITEMS" />
+    <EntitySet Name="ROOM_ASSIGNED" EntityType="Self.ROOM_ASSIGNED" />
+    <EntitySet Name="ROOMS" EntityType="Self.ROOM" />
+    <AssociationSet Name="FK_FEEDBACKS_CAREGIVER" Association="Self.FK_FEEDBACKS_CAREGIVER">
+      <End Role="CAREGIVER" EntitySet="CAREGIVERs" />
+      <End Role="FEEDBACKS" EntitySet="FEEDBACKS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ELDER_CHECKUP_DOCTOR" Association="Self.FK_ELDER_CHECKUP_DOCTOR">
+      <End Role="DOCTOR" EntitySet="DOCTORs" />
+      <End Role="ELDER_CHECKUP" EntitySet="ELDER_CHECKUP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GLUCODE_READING_DOCTOR" Association="Self.FK_GLUCODE_READING_DOCTOR">
+      <End Role="DOCTOR" EntitySet="DOCTORs" />
+      <End Role="GLUCODE_READING" EntitySet="GLUCODE_READING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MEAL_PLANS_DOCTOR" Association="Self.FK_MEAL_PLANS_DOCTOR">
+      <End Role="DOCTOR" EntitySet="DOCTORs" />
+      <End Role="MEAL_PLANS" EntitySet="MEAL_PLANS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONETION_EVENT_ITEMS_DONETION_EVENT" Association="Self.FK_DONETION_EVENT_ITEMS_DONETION_EVENT">
+      <End Role="DONETION_EVENT" EntitySet="DONETION_EVENT" />
+      <End Role="DONETION_EVENT_ITEMS" EntitySet="DONETION_EVENT_ITEMS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONETION_EVENT_ITEMS_GROCERY_ITEMS" Association="Self.FK_DONETION_EVENT_ITEMS_GROCERY_ITEMS">
+      <End Role="GROCERY_ITEMS" EntitySet="GROCERY_ITEMS" />
+      <End Role="DONETION_EVENT_ITEMS" EntitySet="DONETION_EVENT_ITEMS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ELDER_CHECKUP_ELDER" Association="Self.FK_ELDER_CHECKUP_ELDER">
+      <End Role="ELDER" EntitySet="ELDERs" />
+      <End Role="ELDER_CHECKUP" EntitySet="ELDER_CHECKUP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ELDER_GURDIAN_ELDER" Association="Self.FK_ELDER_GURDIAN_ELDER">
+      <End Role="ELDER" EntitySet="ELDERs" />
+      <End Role="ELDER_GURDIAN" EntitySet="ELDER_GURDIAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FEEDBACKS_ELDER" Association="Self.FK_FEEDBACKS_ELDER">
+      <End Role="ELDER" EntitySet="ELDERs" />
+      <End Role="FEEDBACKS" EntitySet="FEEDBACKS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GLUCODE_READING_ELDER" Association="Self.FK_GLUCODE_READING_ELDER">
+      <End Role="ELDER" EntitySet="ELDERs" />
+      <End Role="GLUCODE_READING" EntitySet="GLUCODE_READING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GLUCOSE_READING_REPORT_ELDER" Association="Self.FK_GLUCOSE_READING_REPORT_ELDER">
+      <End Role="ELDER" EntitySet="ELDERs" />
+      <End Role="GLUCOSE_READING_REPORT" EntitySet="GLUCOSE_READING_REPORT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HEALTH_ALERT_ELDER" Association="Self.FK_HEALTH_ALERT_ELDER">
+      <End Role="ELDER" EntitySet="ELDERs" />
+      <End Role="HEALTH_ALERT" EntitySet="HEALTH_ALERT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HEALTH_PREDICTION_ELDER" Association="Self.FK_HEALTH_PREDICTION_ELDER">
+      <End Role="ELDER" EntitySet="ELDERs" />
+      <End Role="HEALTH_PREDICTION" EntitySet="HEALTH_PREDICTION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MEAL_PLANS_ELDER" Association="Self.FK_MEAL_PLANS_ELDER">
+      <End Role="ELDER" EntitySet="ELDERs" />
+      <End Role="MEAL_PLANS" EntitySet="MEAL_PLANS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROOM_ASSIGNED_ELDER" Association="Self.FK_ROOM_ASSIGNED_ELDER">
+      <End Role="ELDER" EntitySet="ELDERs" />
+      <End Role="ROOM_ASSIGNED" EntitySet="ROOM_ASSIGNED" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GLUCOSE_READING_REPORT_GLUCODE_READING" Association="Self.FK_GLUCOSE_READING_REPORT_GLUCODE_READING">
+      <End Role="GLUCODE_READING" EntitySet="GLUCODE_READING" />
+      <End Role="GLUCOSE_READING_REPORT" EntitySet="GLUCOSE_READING_REPORT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GROCERY_ITEM_NUTRICIANTS_GROCERY_ITEMS" Association="Self.FK_GROCERY_ITEM_NUTRICIANTS_GROCERY_ITEMS">
+      <End Role="GROCERY_ITEMS" EntitySet="GROCERY_ITEMS" />
+      <End Role="GROCERY_ITEM_NUTRICIANTS" EntitySet="GROCERY_ITEM_NUTRICIANTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MEAL_PLANS_ITEMS_GROCERY_ITEMS" Association="Self.FK_MEAL_PLANS_ITEMS_GROCERY_ITEMS">
+      <End Role="GROCERY_ITEMS" EntitySet="GROCERY_ITEMS" />
+      <End Role="MEAL_PLANS_ITEMS" EntitySet="MEAL_PLANS_ITEMS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MEAL_PLANS_ITEMS_MEAL_PLANS" Association="Self.FK_MEAL_PLANS_ITEMS_MEAL_PLANS">
+      <End Role="MEAL_PLANS" EntitySet="MEAL_PLANS" />
+      <End Role="MEAL_PLANS_ITEMS" EntitySet="MEAL_PLANS_ITEMS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROOM_ASSIGNED_ROOMS" Association="Self.FK_ROOM_ASSIGNED_ROOMS">
+      <End Role="ROOMS" EntitySet="ROOMS" />
+      <End Role="ROOM_ASSIGNED" EntitySet="ROOM_ASSIGNED" />
+    </AssociationSet>
+    <EntitySet Name="APP_USER" EntityType="ELDER_NUTRICIANTSModel.APP_USER" />
+    <FunctionImport Name="PROC_INCREMENT_ID" ReturnType="Collection(String)">
+      <Parameter Name="TYPE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_INCREMENT_ID_UPADATE" ReturnType="Collection(String)">
+      <Parameter Name="TYPE" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="COMPANies" EntityType="ELDER_NUTRICIANTSModel.COMPANY" />
+    <EntitySet Name="V_ELDER" EntityType="ELDER_NUTRICIANTSModel.V_ELDER" />
+    <EntitySet Name="V_ELDER_BLOOD_RPT" EntityType="ELDER_NUTRICIANTSModel.V_ELDER_BLOOD_RPT" />
+    <EntitySet Name="CAREGIVER_ASSIGN_ELDER" EntityType="ELDER_NUTRICIANTSModel.CAREGIVER_ASSIGN_ELDER" />
+    <AssociationSet Name="FK_CAREGIVER_ASSIGN_ELDER_CAREGIVER" Association="ELDER_NUTRICIANTSModel.FK_CAREGIVER_ASSIGN_ELDER_CAREGIVER">
+      <End Role="CAREGIVER" EntitySet="CAREGIVERs" />
+      <End Role="CAREGIVER_ASSIGN_ELDER" EntitySet="CAREGIVER_ASSIGN_ELDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CAREGIVER_ASSIGN_ELDER_ELDER" Association="ELDER_NUTRICIANTSModel.FK_CAREGIVER_ASSIGN_ELDER_ELDER">
+      <End Role="ELDER" EntitySet="ELDERs" />
+      <End Role="CAREGIVER_ASSIGN_ELDER" EntitySet="CAREGIVER_ASSIGN_ELDER" />
+    </AssociationSet>
+    <EntitySet Name="V_ASSIGN_CAREGIVER" EntityType="ELDER_NUTRICIANTSModel.V_ASSIGN_CAREGIVER" />
+    <EntitySet Name="V_ASSIGN_ROOMS" EntityType="ELDER_NUTRICIANTSModel.V_ASSIGN_ROOMS" />
+    <EntitySet Name="ELDER_DEATH" EntityType="ELDER_NUTRICIANTSModel.ELDER_DEATH" />
+    <AssociationSet Name="FK_ELDER_DEATH_ELDER" Association="ELDER_NUTRICIANTSModel.FK_ELDER_DEATH_ELDER">
+      <End Role="ELDER" EntitySet="ELDERs" />
+      <End Role="ELDER_DEATH" EntitySet="ELDER_DEATH" />
+    </AssociationSet>
+    <EntitySet Name="GROCERY_ITEM_CATEGORY" EntityType="ELDER_NUTRICIANTSModel.GROCERY_ITEM_CATEGORY" />
+    <AssociationSet Name="FK_GROCERY_ITEMS_GROCERY_ITEM_CATEGORY" Association="ELDER_NUTRICIANTSModel.FK_GROCERY_ITEMS_GROCERY_ITEM_CATEGORY">
+      <End Role="GROCERY_ITEM_CATEGORY" EntitySet="GROCERY_ITEM_CATEGORY" />
+      <End Role="GROCERY_ITEMS" EntitySet="GROCERY_ITEMS" />
+    </AssociationSet>
+    <EntitySet Name="V_MEALS" EntityType="ELDER_NUTRICIANTSModel.V_MEALS" />
+  </EntityContainer>
+  <EntityType Name="APP_USER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FULL_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <Property Name="LOGIN_ATTEMPT" Type="Int32" />
+    <Property Name="ENTER_DATE" Type="DateTime" Precision="0" />
+    <Property Name="ENTER_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REF_ID" Type="Int32" />
+    <Property Name="PIC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="COMPANY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="COMPANYNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TEL1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TEL2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL_PASSWORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="WEBSITE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="V_ELDER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ELDER_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FULL_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="NIC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="GENDER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONTACT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IS_DEAD" Type="Int32" />
+    <Property Name="PROFIL_PIC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ROOM_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CURRENT_SUGAR_LEVEL" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CURRENT_SUGAR_LEVEL_ENTER_DATE" Type="DateTime" Precision="0" />
+    <Property Name="IS_DIABITCS" Type="Int32" />
+    <Property Name="E_GURDIAN_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="G_FULL_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="RELATIONSHIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="G_CONTACT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="V_ELDER_BLOOD_RPT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="READING_DATE" Type="DateTime" Precision="0" />
+    <Property Name="GLUCOSE_LEVEL" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RECORDED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOC_ID" Type="Int32" />
+    <Property Name="SOURCE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="REPORT_UPLOAD_DATE" Type="DateTime" Precision="3" />
+    <Property Name="REPORT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CAREGIVER_ASSIGN_ELDER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CAREGIVER_ID" Type="Int32" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ASSIGNED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="STATUS" Type="Int32" />
+    <NavigationProperty Name="CAREGIVER" Relationship="ELDER_NUTRICIANTSModel.FK_CAREGIVER_ASSIGN_ELDER_CAREGIVER" FromRole="CAREGIVER_ASSIGN_ELDER" ToRole="CAREGIVER" />
+    <NavigationProperty Name="ELDER" Relationship="ELDER_NUTRICIANTSModel.FK_CAREGIVER_ASSIGN_ELDER_ELDER" FromRole="CAREGIVER_ASSIGN_ELDER" ToRole="ELDER" />
+  </EntityType>
+  <Association Name="FK_CAREGIVER_ASSIGN_ELDER_CAREGIVER">
+    <End Type="ELDER_NUTRICIANTSModel.CAREGIVER" Role="CAREGIVER" Multiplicity="0..1" />
+    <End Type="ELDER_NUTRICIANTSModel.CAREGIVER_ASSIGN_ELDER" Role="CAREGIVER_ASSIGN_ELDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAREGIVER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CAREGIVER_ASSIGN_ELDER">
+        <PropertyRef Name="CAREGIVER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CAREGIVER_ASSIGN_ELDER_ELDER">
+    <End Type="ELDER_NUTRICIANTSModel.ELDER" Role="ELDER" Multiplicity="0..1" />
+    <End Type="ELDER_NUTRICIANTSModel.CAREGIVER_ASSIGN_ELDER" Role="CAREGIVER_ASSIGN_ELDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CAREGIVER_ASSIGN_ELDER">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="V_ASSIGN_CAREGIVER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="CAREGIVER_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FULL_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PROFILE_IMG" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="CAREGIVER_ID" Type="Int32" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ASSIGNED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="STATUS" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_ASSIGN_ROOMS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ROOM_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ROOM_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CAPACITY" Type="Int32" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ROOM_ID" Type="Int32" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="ASSIGNED_DATE" Type="DateTime" Precision="0" />
+    <Property Name="ASSIGNED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <Property Name="ENTED_DATE" Type="DateTime" Precision="0" />
+    <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ELDER_DEATH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ELDER_ID" Type="Int32" />
+    <Property Name="DATE_OF_DEATH" Type="DateTime" Precision="0" />
+    <Property Name="TIME_OF_DEATH" Type="Time" Precision="7" />
+    <Property Name="CAUSE_OF_DEATH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PLACE_OF_DEATH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REPORTED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <Property Name="ENTER_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ELDER" Relationship="ELDER_NUTRICIANTSModel.FK_ELDER_DEATH_ELDER" FromRole="ELDER_DEATH" ToRole="ELDER" />
+  </EntityType>
+  <Association Name="FK_ELDER_DEATH_ELDER">
+    <End Type="ELDER_NUTRICIANTSModel.ELDER" Role="ELDER" Multiplicity="0..1" />
+    <End Type="ELDER_NUTRICIANTSModel.ELDER_DEATH" Role="ELDER_DEATH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ELDER_DEATH">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="GROCERY_ITEM_CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CATEGORY_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <Property Name="DATE" Type="DateTime" Precision="0" />
+    <Property Name="TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="GROCERY_ITEMS" Relationship="ELDER_NUTRICIANTSModel.FK_GROCERY_ITEMS_GROCERY_ITEM_CATEGORY" FromRole="GROCERY_ITEM_CATEGORY" ToRole="GROCERY_ITEMS" />
+  </EntityType>
+  <Association Name="FK_GROCERY_ITEMS_GROCERY_ITEM_CATEGORY">
+    <End Type="ELDER_NUTRICIANTSModel.GROCERY_ITEM_CATEGORY" Role="GROCERY_ITEM_CATEGORY" Multiplicity="0..1" />
+    <End Type="ELDER_NUTRICIANTSModel.GROCERY_ITEMS" Role="GROCERY_ITEMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROCERY_ITEM_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GROCERY_ITEMS">
+        <PropertyRef Name="CATEGORY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="V_MEALS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="CATEGORY_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CATEGORY_ID" Type="Int32" />
+    <Property Name="BRAND" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BARCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <Property Name="PICTURE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FOOD_GROUP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SOURCE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DATE" Type="DateTime" Precision="3" />
+    <Property Name="DOC_ID" Type="Int32" />
+    <Property Name="CREATE_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

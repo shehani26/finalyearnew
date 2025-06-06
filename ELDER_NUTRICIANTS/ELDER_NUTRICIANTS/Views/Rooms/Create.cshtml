@@ -1,0 +1,233 @@
+﻿@model ELDER_NUTRICIANTS.Models.ROOM
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
+                        <h6 class="text-white text-capitalize ps-3 mb-0">Add New Room</h6>
+                        <div class="d-flex align-items-center me-3">
+                            <a href="@Url.Action("Index", "Rooms")" class="btn btn-white btn-sm">
+                                <i class="material-symbols-rounded me-1">arrow_back</i> Back to List
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-4">
+                    @using (Html.BeginForm("Create", "Rooms", FormMethod.Post, new { enctype = "multipart/form-data", id = "caregiverForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header p-3 pb-0">
+                                    <h5 class="mb-0">Room Information</h5>
+                                    <p class="text-sm mb-0">Enter room details</p>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group input-group-outline my-3">
+                                                <label class="form-label">Room Number</label>
+                                                @Html.TextBoxFor(model => model.ROOM_NUMBER, new { @class = "form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group input-group-outline my-3">
+                                                <label class="form-label">Floor Number</label>
+                                                @Html.TextBoxFor(model => model.FLOOR_NUMBER, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group input-group-outline my-3">
+
+                                                @Html.DropDownListFor(model => model.ROOM_TYPE, (SelectList)ViewBag.Type, "-Select Room Type-", new
+{
+    @class = "form-control",
+    @id = "roomTypeDropdown",
+    required = "required"
+})
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group input-group-outline my-3">
+                                                @*<label class="form-label">Room Capacity</label>*@
+                                                @Html.TextBoxFor(model => model.CAPACITY, new
+ {
+     @class = "form-control",
+     @id = "capacityBox",
+     @type = "number",
+     @min = "1",
+     required = "required",
+     @placeholder = "Room Capacity"
+ })
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group input-group-outline mb-3">
+                                                <label class="form-label">Description</label>
+                                                @Html.TextAreaFor(model => model.DESCRIPTION, new { @class = "form-control", rows = "3", required = "required" })
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="card mt-4">
+                                <div class="card-body pt-0">
+                                    <div class="d-flex gap-2">
+                                        <button id="saveBtn" type="submit" class="btn btn-success w-50 mb-0">
+                                            <i class="material-symbols-rounded me-1">save</i> Save Room
+                                        </button>
+                                        <a href="@Url.Action("Index", "Room")" class="btn btn-outline-secondary w-50 mb-0">
+                                            <i class="material-symbols-rounded me-1">cancel</i> Cancel
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Image preview functionality
+       
+
+
+
+        // Initialize floating labels for filled inputs
+        const initInputs = document.querySelectorAll('.input-group-outline input, .input-group-outline textarea');
+        initInputs.forEach(input => {
+            if (input.value !== '') {
+                input.parentElement.classList.add('is-filled');
+            }
+
+            input.addEventListener('focus', function () {
+                this.parentElement.classList.add('is-focused');
+            });
+
+            input.addEventListener('blur', function () {
+                this.parentElement.classList.remove('is-focused');
+                if (this.value !== '') {
+                    this.parentElement.classList.add('is-filled');
+                } else {
+                    this.parentElement.classList.remove('is-filled');
+                }
+            });
+        });
+    });
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+    // Configuration for toast notifications
+    const toastConfig = {
+        closeButton: true,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "5000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    };
+
+    // Apply global configuration
+    toastr.options = toastConfig;
+
+    // Process different notification types
+    const notifications = [
+        { type: 'success', message: '@Html.Raw(Json.Encode(TempData["Alert"]))', title: "Success" },
+        { type: 'error', message: '@Html.Raw(Json.Encode(TempData["Alert1"]))', title: "Error" },
+        { type: 'info', message: '@Html.Raw(Json.Encode(TempData["InfoAlert"]))', title: "Information" },
+        { type: 'warning', message: '@Html.Raw(Json.Encode(TempData["WarningAlert"]))', title: "Warning" }
+    ];
+
+    // Process and display each notification if it exists
+    notifications.forEach(notification => {
+        const message = notification.message;
+        if (message && message !== "null" && message !== "") {
+            // Show toast with appropriate type
+            toastr[notification.type](message, notification.title);
+
+            // Log for debugging (optional)
+            console.log(`${notification.title} notification displayed: ${message}`);
+        }
+    });
+
+    // Add click handler to allow users to dismiss notifications manually
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.toast-close-button')) {
+            console.log('Notification manually dismissed by user');
+        }
+    });
+    });
+
+
+    document.getElementById("roomTypeDropdown").addEventListener("change", function () {
+        var selectedValue = this.value.toLowerCase();
+        var capacityBox = document.getElementById("capacityBox");
+
+        if (selectedValue === "shared") {
+            capacityBox.value = 2;
+        } else if (selectedValue && selectedValue !== "-1") {
+            capacityBox.value = 1;
+        } else {
+            capacityBox.value = '';
+        }
+    });
+
+    document.getElementById('capacityBox').addEventListener('input', function () {
+        const value = parseInt(this.value);
+
+        if (value < 1) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Capacity',
+                text: 'Capacity must be at least 1!',
+                confirmButtonColor: '#d33'
+            });
+            this.value = ''; // Reset the field
+        } else if (value > 4) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Maximum Capacity Reached',
+                text: 'Room capacity cannot exceed 4!',
+                confirmButtonColor: '#f0ad4e'
+            });
+            this.value = ''; // Auto set to max
+        }
+    });
+</script>

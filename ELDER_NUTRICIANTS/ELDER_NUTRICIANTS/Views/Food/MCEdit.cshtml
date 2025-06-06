@@ -1,0 +1,673 @@
+﻿@model ELDER_NUTRICIANTS.Models.MealVM
+
+@{
+    ViewBag.Title = "MCEdit";
+}
+
+
+<head>
+    <style>
+        :root {
+            --primary: #3a7bd5;
+            --primary-light: #6fa1ff;
+            --secondary: #5cdb95;
+            --dark: #333;
+            --light: #f8f9fa;
+            --danger: #ff6b6b;
+            --warning: #ffd166;
+            --success: #06d6a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+            .header h1 {
+                color: var(--primary);
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+            }
+
+            .header p {
+                color: var(--dark);
+                opacity: 0.8;
+            }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+            .tab.active {
+                border-bottom: 3px solid var(--primary);
+                color: var(--primary);
+            }
+
+        .form-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+            .form-section.active {
+                display: block;
+            }
+
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+            input:focus, select:focus, textarea:focus {
+                border-color: var(--primary);
+                box-shadow: 0 0 0 2px rgba(58, 123, 213, 0.2);
+                outline: none;
+            }
+
+        .input-group {
+            display: flex;
+            gap: 15px;
+        }
+
+            .input-group > div {
+                flex: 1;
+            }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+            .btn-primary:hover {
+                background: var(--primary-light);
+            }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+            .btn-outline:hover {
+                background: var(--primary);
+                color: white;
+            }
+
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .image-preview-container {
+            margin-top: 15px;
+            position: relative;
+            width: 100%;
+            height: 200px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .image-preview-placeholder {
+            text-align: center;
+            color: #999;
+        }
+
+        .nutrition-facts {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+            .nutrition-facts h3 {
+                border-bottom: 8px solid #000;
+                padding-bottom: 5px;
+                font-size: 28px;
+            }
+
+            .nutrition-facts .serving {
+                font-size: 14px;
+                padding: 5px 0;
+                border-bottom: 1px solid #ddd;
+            }
+
+        .nutrition-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+            .nutrition-item.bold {
+                font-weight: bold;
+            }
+
+            .nutrition-item.indented {
+                padding-left: 20px;
+            }
+
+        .slider-container {
+            padding: 10px 0;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #d3d3d3;
+            outline: none;
+        }
+
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: var(--primary);
+                cursor: pointer;
+            }
+
+        .slider-value {
+            text-align: center;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+
+        .food-group-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .food-group-option {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .food-group-option:hover {
+                border-color: var(--primary-light);
+            }
+
+            .food-group-option.selected {
+                border-color: var(--primary);
+                background-color: rgba(58, 123, 213, 0.1);
+            }
+
+            .food-group-option i {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+        .progress-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: right;
+            margin-top: 5px;
+            font-size: 14px;
+            color: var(--dark);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            background-color: var(--success);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+            .notification.show {
+                transform: translateX(0);
+            }
+
+        @@media (max-width: 768px) {
+            .input-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .food-group-option {
+                min-width: calc(50% - 10px);
+            }
+
+            .tab {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="notification" id="notification">Meal saved successfully!</div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress-bar" style="width: 25%"></div>
+            </div>
+            <div class="progress-text" id="progress-text">Step 1 of 4</div>
+        </div>
+
+        @using (Html.BeginForm("MEdit", "Food", new { id = Model.ID }, FormMethod.Post, new { enctype = "multipart/form-data", id = "mealForm", @class = "form-container" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-tabs">
+                <div class="tab active" data-tab="basic-info">Basic Info</div>
+                <div class="tab" data-tab="nutrition">Nutrition Facts</div>
+                <div class="tab" data-tab="vitamins">Vitamins & Minerals</div>
+                <div class="tab" data-tab="preview">Review & Save</div>
+            </div>
+
+            <!-- Basic Info Section -->
+    <div class="form-section active" id="basic-info">
+        <div class="form-group">
+            <label for="NAME">Meal Name</label>
+            @Html.TextBoxFor(model => model.NAME, new { @class = "form-control", placeholder = "Enter a creative name for your meal", required = "required" })
+            @Html.ValidationMessageFor(model => model.NAME)
+        </div>
+
+        <div class="form-group">
+            <label for="CATEGORY_ID">Meal Category</label>
+            @Html.DropDownListFor(model => model.CATEGORY_ID, (SelectList)ViewBag.CatSS, "-Select Meal Category-", new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(model => model.CATEGORY_ID)
+        </div>
+
+        <div class="form-group">
+            <label>Food Group</label>
+            <div class="food-group-options">
+                <div class="food-group-option" data-value="Fruits">
+                    <i class="fas fa-apple-alt"></i>
+                    <p>Fruits</p>
+                </div>
+                <div class="food-group-option" data-value="Vegetables">
+                    <i class="fas fa-carrot"></i>
+                    <p>Vegetables</p>
+                </div>
+                <div class="food-group-option" data-value="Grains">
+                    <i class="fas fa-bread-slice"></i>
+                    <p>Grains</p>
+                </div>
+                <div class="food-group-option" data-value="Protein">
+                    <i class="fas fa-drumstick-bite"></i>
+                    <p>Protein</p>
+                </div>
+                <div class="food-group-option" data-value="Dairy">
+                    <i class="fas fa-cheese"></i>
+                    <p>Dairy</p>
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.FOOD_GROUP, new { id = "FOOD_GROUP" })
+        </div>
+
+     
+
+        <div class="form-group">
+            <label for="Img_File_F">Meal Image</label>
+            <input type="file" id="Img_File_F" name="Img_File_F" accept="image/*">
+            <div class="image-preview-container">
+
+                <img src="@Url.Content(Model.PICTURE)" />
+
+                <img id="image-preview" class="image-preview" >
+                <div id="image-preview-placeholder" class="image-preview-placeholder">
+                    <i class="fas fa-image fa-3x"></i>
+                    <p>Upload an image of your meal</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+            <div class="form-navigation">
+                <div></div>
+                <button type="button" class="btn btn-primary next-btn" data-next="nutrition">Next: Nutrition Facts <i class="fas fa-arrow-right"></i></button>
+            </div>
+  
+
+        <!-- Nutrition Facts Section -->
+        <div class="form-section" id="nutrition">
+            <h3>Key Nutritional Information</h3>
+            <p>Set the primary nutritional values for your meal</p>
+
+            <div class="input-group">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CALORIES_kcal)
+                    <div class="slider-container">
+                        @Html.TextBoxFor(model => model.CALORIES_kcal, new { type = "range", min = "0", max = "1000", @class = "slider", id = "calories-slider" })
+                        <div class="slider-value" id="calories-value">@Model.CALORIES_kcal kcal</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PROTEIN)
+                    <div class="slider-container">
+                        @Html.TextBoxFor(model => model.PROTEIN, new { type = "range", min = "0", max = "100", @class = "slider", id = "protein-slider" })
+                        <div class="slider-value" id="protein-value">@Model.PROTEIN g</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CARBS)
+                    <div class="slider-container">
+                        @Html.TextBoxFor(model => model.CARBS, new { type = "range", min = "0", max = "200", @class = "slider", id = "carbs-slider" })
+                        <div class="slider-value" id="carbs-value">@Model.CARBS g</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FAT_TOTAL)
+                    <div class="slider-container">
+                        @Html.TextBoxFor(model => model.FAT_TOTAL, new { type = "range", min = "0", max = "100", @class = "slider", id = "fat-slider" })
+                        <div class="slider-value" id="fat-value">@Model.FAT_TOTAL g</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SUGAR)
+                    @Html.TextBoxFor(model => model.SUGAR, new { type = "number", step = "0.1", min = "0", @class = "form-control", placeholder = "0" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FIBER)
+                    @Html.TextBoxFor(model => model.FIBER, new { type = "number", step = "0.1", min = "0", @class = "form-control", placeholder = "0" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FAT_SATURED)
+                    @Html.TextBoxFor(model => model.FAT_SATURED, new { type = "number", step = "0.1", min = "0", @class = "form-control", placeholder = "0" })
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CHOLESTROL)
+                    @Html.TextBoxFor(model => model.CHOLESTROL, new { type = "number", step = "0.1", min = "0", @class = "form-control", placeholder = "0" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SODIUM)
+                    @Html.TextBoxFor(model => model.SODIUM, new { type = "number", step = "0.1", min = "0", @class = "form-control", placeholder = "0" })
+                </div>
+            </div>
+
+            <div class="form-navigation">
+                <button type="button" class="btn btn-outline prev-btn" data-prev="basic-info"><i class="fas fa-arrow-left"></i> Previous</button>
+                <button type="button" class="btn btn-primary next-btn" data-next="vitamins">Next: Vitamins & Minerals <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Vitamins & Minerals Section -->
+        <div class="form-section" id="vitamins">
+            <h3>Vitamins & Minerals</h3>
+            <p>Add information about essential vitamins and minerals in your meal</p>
+
+            <div class="input-group">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.POTESSIUM)
+                    @Html.TextBoxFor(model => model.POTESSIUM, new { type = "number", step = "0.1", min = "0", @class = "form-control", placeholder = "0" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IRON)
+                    @Html.TextBoxFor(model => model.IRON, new { type = "number", step = "0.1", min = "0", @class = "form-control", placeholder = "0" })
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.VITAMIN_A)
+                    @Html.TextBoxFor(model => model.VITAMIN_A, new { type = "number", step = "0.1", min = "0", @class = "form-control", placeholder = "0" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.VITAMIN_C)
+                    @Html.TextBoxFor(model => model.VITAMIN_C, new { type = "number", step = "0.1", min = "0", @class = "form-control", placeholder = "0" })
+                </div>
+            </div>
+
+            <div class="form-navigation">
+                <button type="button" class="btn btn-outline prev-btn" data-prev="nutrition"><i class="fas fa-arrow-left"></i> Previous</button>
+                <button type="button" class="btn btn-primary next-btn" data-next="preview">Review & Save <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="form-section" id="preview">
+            <h3>Review Your Meal</h3>
+            <p>Take a final look at your meal before saving</p>
+
+            <div class="form-group">
+                <h4>Basic Information</h4>
+                <div id="preview-basic"></div>
+            </div>
+
+            <div class="nutrition-facts">
+                <h3>Nutrition Facts</h3>
+                <div class="serving">Serving size 1 portion</div>
+
+                <div class="nutrition-item bold">
+                    <span>Calories</span>
+                    <span id="preview-calories">0</span>
+                </div>
+
+                <!-- Rest of your nutrition facts preview -->
+            </div>
+
+            <div class="form-navigation">
+                <button type="button" class="btn btn-outline prev-btn" data-prev="vitamins"><i class="fas fa-arrow-left"></i> Previous</button>
+                <button type="submit" class="btn btn-primary" id="submit-btn"><i class="fas fa-save"></i> Save Meal</button>
+            </div>
+        </div>
+    }
+        </div>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize form with model values
+            const initializeForm = () => {
+                // Set slider values from model
+                document.getElementById('calories-slider').value = @Model.CALORIES_kcal;
+                document.getElementById('protein-slider').value = @Model.PROTEIN;
+                document.getElementById('carbs-slider').value = @Model.CARBS;
+                document.getElementById('fat-slider').value = @Model.FAT_TOTAL;
+
+                // Update slider displays
+                document.getElementById('calories-value').textContent = @Model.CALORIES_kcal + ' kcal';
+                document.getElementById('protein-value').textContent = @Model.PROTEIN + ' g';
+                document.getElementById('carbs-value').textContent = @Model.CARBS + ' g';
+                document.getElementById('fat-value').textContent = @Model.FAT_TOTAL + ' g';
+
+                // Set food group selection
+                const foodGroup = '@Model.FOOD_GROUP';
+                if (foodGroup) {
+                    document.querySelectorAll('.food-group-option').forEach(option => {
+                        if (option.getAttribute('data-value') === foodGroup) {
+                            option.classList.add('selected');
+                            document.getElementById('FOOD_GROUP').value = foodGroup;
+                        }
+                    });
+                }
+            };
+
+            initializeForm();
+
+            // Your existing JavaScript with modifications for MVC helpers
+            // (Keep all your existing event handlers and functions)
+            // Make sure to update the preview function to use the MVC-generated IDs
+
+            // Update preview function
+            function updatePreview() {
+                const name = document.getElementById('@Html.IdFor(model => model.NAME)').value || 'Unnamed Meal';
+                const category = document.getElementById('@Html.IdFor(model => model.CATEGORY_ID)');
+                const categoryText = category.options[category.selectedIndex].text;
+                const foodGroup = document.getElementById('@Html.IdFor(model => model.FOOD_GROUP)').value || 'Not specified';
+
+                document.getElementById('preview-basic').innerHTML = `
+                    <p><strong>Name:</strong> ${name}</p>
+                    <p><strong>Category:</strong> ${categoryText}</p>
+                    <p><strong>Food Group:</strong> ${foodGroup}</p>
+                `;
+
+                // Update all nutrition preview values using MVC helper IDs
+                document.getElementById('preview-calories').textContent = document.getElementById('@Html.IdFor(model => model.CALORIES_kcal)').value + ' kcal';
+                // Update other preview values similarly...
+            }
+
+            // Form submission
+            document.getElementById('mealForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                const submitBtn = document.getElementById('submit-btn');
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+                fetch('@Url.Action("MEdit", "Food", new { id = Model.ID })', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = '@Url.Action("MIndex", "Food")';
+                    } else {
+                        throw new Error(data.message || 'Failed to save meal');
+                    }
+                })
+                .catch(error => {
+                    notification.textContent = error.message;
+                    notification.style.backgroundColor = 'var(--danger)';
+                    notification.classList.add('show');
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Meal';
+                });
+            });
+        });
+        </script>
+    </body>

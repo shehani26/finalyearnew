@@ -1,0 +1,621 @@
+﻿@model ELDER_NUTRICIANTS.Models.ReportVM
+
+@{
+    ViewBag.Title = "RoNext";
+}
+
+<style>
+    .file-upload-container {
+        border: 1px dashed #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .preview-container {
+        border: 1px solid #eee;
+        border-radius: 6px;
+        padding: 15px;
+        background-color: white;
+    }
+
+    .preview-title {
+        color: #555;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .preview-content {
+        min-height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+        .preview-content img {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+        }
+
+        .preview-content .pdf-preview {
+            padding: 20px;
+            text-align: center;
+        }
+
+    .pdf-preview i {
+        font-size: 48px;
+        color: #e74c3c;
+    }
+
+    .file-info {
+        font-size: 0.8rem;
+    }
+
+    .profile-info-item {
+        margin-bottom: 1.5rem;
+    }
+
+        .profile-info-item label {
+            font-weight: 600;
+            color: #344767;
+            margin-bottom: 0.25rem;
+            display: block;
+            font-size: 0.875rem;
+        }
+
+        .profile-info-item p {
+            margin: 0;
+            padding: 0.5rem 0;
+            font-size: 1rem;
+            color: #67748e;
+            border-bottom: 1px solid #f0f2f5;
+        }
+
+    .profile-image-container {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 5px solid #f0f2f5;
+    }
+
+    .profile-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card-header.bg-light {
+        background-color: #f8f9fa !important;
+    }
+
+    .material-symbols-rounded {
+        vertical-align: middle;
+    }
+</style>
+
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
+                        <h6 class="text-white text-capitalize ps-3 mb-0"> Room Assign</h6>
+                        <div class="d-flex align-items-center me-3">
+                            <a href="@Url.Action("RoIndex", "Elder")" class="btn btn-white btn-sm">
+                                <i class="material-symbols-rounded me-1">arrow_back</i> Back to List
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <!-- Personal Information Card -->
+                            <div class="card mb-4">
+                                <div class="card-header bg-light p-3">
+                                    <h5 class="mb-0">
+                                        <i class="material-symbols-rounded me-2">person</i>
+                                        Elder Personal Information
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Full Name</label>
+                                                <p>@Model.ve.FULL_NAME</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Gender</label>
+                                                <p>@Model.ve.GENDER</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>NIC</label>
+                                                <p>@Model.ve.NIC</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Date of Birth</label>
+                                                <p>@Convert.ToDateTime(Model.ve.DOB).ToString("yyyy-MM-dd")</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Contact Number</label>
+                                                <p>@Model.ve.CONTACT_NO</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="profile-info-item">
+                                        <label>Address</label>
+                                        <p>@Model.ve.ADDRESS</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Guardian Information Card -->
+                            <div class="card">
+                                <div class="card-header bg-light p-3">
+                                    <h5 class="mb-0">
+                                        <i class="material-symbols-rounded me-2">contact_emergency</i>
+                                        Guardian Information
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Guardian Name</label>
+                                                <p>@Model.ve.G_FULL_NAME</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Relationship</label>
+                                                <p>@Model.ve.RELATIONSHIP</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Contact Number</label>
+                                                <p>@Model.ve.G_CONTACT_NO</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="profile-info-item">
+                                                <label>Email</label>
+                                                <p>@Model.ve.EMAIL</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Profile Image and Actions -->
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="card-header bg-light p-3">
+                                    <h5 class="mb-0">
+                                        <i class="material-symbols-rounded me-2">photo_camera</i>
+                                        Profile Photo
+                                    </h5>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="profile-image-container">
+                                        <img src="@Url.Content(Model.ve.PROFIL_PIC)" class="profile-image" alt="Profile Photo">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header bg-light p-3">
+                                    <h5 class="mb-0">
+                                        <i class="material-symbols-rounded me-2">group</i>
+                                        Available Rooms
+                                    </h5>
+                                </div>
+
+
+
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+
+                                        <div class="mb-3">
+                                            <input type="text" id="caregiverSearch" class="form-control" placeholder="Search rooms...">
+                                        </div>
+
+                                        <table class="table table-hover align-items-center">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-start">Room</th>
+
+                                                    <th class="text-start">Action</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.ro)
+                                                {
+                                                    <tr>
+                                                        <td class="d-flex align-items-center gap-3">
+                                                            
+
+                                                            <div>
+                                                                <strong class="d-block">@item.ROOM_NUMBER</strong>
+                                                                <span class="text-muted">@item.ROOM_TYPE</span>
+                                                                <span class="text-muted">@item.CAPACITY</span>
+                                                                <span class="text-muted">@item.DESCRIPTION</span>
+                                                            </div>
+                                                        </td>
+
+
+
+                                                        <td class="text-end">
+                                                            <a href="@Url.Action("AssignRoom", "Elder", new { Roomid = item.ID, elderId = ViewBag.elderid })"
+                                                               class="btn btn-sm btn-primary">
+                                                                <i class="material-symbols-rounded me-1">check_circle</i> Select
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="card">
+                            <div class="card-header bg-light p-3">
+                                <h5 class="mb-0">
+                                    <i class="material-symbols-rounded me-2">history</i>
+                                    Previous Reports
+                                </h5>
+                            </div>
+
+                            <div class="card-body">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th><strong>Glucose Level</strong></th>
+                                            <th><strong>Entered Doctor Username</strong></th>
+                                            <th><strong>Source</strong></th>
+                                            <th><strong>Description</strong></th>
+                                            <th><strong>Report Upload Date</strong></th>
+                                            <th><strong>Upload File</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.vebr)
+                                        {
+                                            <tr>
+                                                <td>@item.GLUCOSE_LEVEL</td>
+                                                <td>@item.RECORDED_BY</td>
+                                                <td>@item.SOURCE</td>
+                                                <td style="word-wrap: break-word; white-space: normal;">@item.DESCRIPTION</td>
+
+                                                <td>@Convert.ToDateTime(item.REPORT_UPLOAD_DATE).ToString("dd-MM-yyyy")</td>
+                                                <td>
+                                                    @if (!string.IsNullOrEmpty(item.REPORT))
+                                                    {
+                                                        <a href="@Url.Content(item.REPORT)" download class="btn btn-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to download report">
+                                                            <i class="material-symbols-rounded me-1">download</i> Download Report
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="No report uploaded">
+                                                            <i class="material-symbols-rounded me-1">file_copy</i> No file uploaded
+                                                        </span>
+                                                    }
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+                        <div class="card">
+                            <div class="card-header bg-light p-3">
+                                <h5 class="mb-0">
+                                    <i class="material-symbols-rounded me-2">history</i>
+                                    Assigned Caregivers
+                                </h5>
+                            </div>
+
+                            <div class="card-body">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th><strong>Caregiver</strong></th>
+                                            <th><strong>Assigned By</strong></th>
+
+                                            <th><strong>Created Date</strong></th>
+                                            <th><strong>Status</strong></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.vac)
+                                        {
+                                            <tr>
+                                                <td class="d-flex align-items-center gap-2">
+                                                    <img src="@Url.Content(item.PROFILE_IMG ?? "~/Content/images/default-profile.png")"
+                                                         alt="Profile"
+                                                         class="rounded-circle"
+                                                         width="40" height="40"
+                                                         style="object-fit: cover; border: 1px solid #ddd;" />
+
+                                                    <div>
+                                                        <strong>@item.FULL_NAME</strong><br />
+                                                        <small class="text-muted">@item.CAREGIVER_CODE</small>
+                                                    </div>
+                                                </td>
+
+                                                <td>@item.ASSIGNED_BY</td>
+
+
+
+                                                <td>@Convert.ToDateTime(item.CREATE_DATE).ToString("dd-MM-yyyy")</td>
+
+                                                <td class="text-center">
+                                                    @if (item.STATUS == 0)
+                                                    {
+                                                        <span class="badge bg-gradient-success">Active</span>
+                                                    }
+                                                    else if (item.STATUS == 1)
+                                                    {
+                                                        <span class="badge bg-gradient-secondary">Inactive</span>
+                                                    }
+
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+                        <div class="card">
+                            <div class="card-header bg-light p-3">
+                                <h5 class="mb-0">
+                                    <i class="material-symbols-rounded me-2">history</i>
+                                    Assigned Rooms
+                                </h5>
+                            </div>
+
+                            <div class="card-body">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th><strong>Room</strong></th>
+                                            <th><strong>Assigned By</strong></th>
+
+                                            <th><strong>Assigned Date</strong></th>
+                                            <th><strong>Status</strong></th>
+                                            <th><strong>Action</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.vars)
+                                        {
+                                        <tr>
+                                            <td class="d-flex align-items-center gap-2">
+
+
+                                                <div>
+                                                    <strong>@item.ROOM_NUMBER</strong><br />
+                                                    <small class="text-muted">@item.ROOM_TYPE</small><br />
+                                                    <small class="text-muted">@item.CAPACITY</small>
+                                                </div>
+                                            </td>
+
+                                            <td>@item.ASSIGNED_BY</td>
+
+
+
+                                            <td>@Convert.ToDateTime(item.ASSIGNED_DATE).ToString("dd-MM-yyyy")</td>
+
+                                            <td class="text-center">
+                                                @if (item.STATUS == 0)
+                                                {
+                                                    <span class="badge bg-gradient-success">Active</span>
+                                                }
+                                                else if (item.STATUS == 1)
+                                                {
+                                                    <span class="badge bg-gradient-secondary">Inactive</span>
+                                                }
+
+                                            </td>
+                                            <td class="text-center">
+                                                <!-- Action button column -->
+                                                @if (item.STATUS == 0)
+                                                {
+                                                    <button class="btn btn-danger btn-sm" onclick="confirmRemove(@item.ID)">Remove</button>
+                                                }
+
+
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toastr CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+        crossorigin="anonymous"></script>
+<script>
+ // Wait for everything to be fully loaded
+window.addEventListener('load', function() {
+    // Check if jQuery is loaded
+    if (typeof jQuery === 'undefined') {
+        console.error('jQuery is not loaded!');
+        return;
+    }
+
+    // Check if toastr is loaded
+    if (typeof toastr === 'undefined') {
+        console.error('Toastr is not loaded!');
+        return;
+    }
+
+    // Configure toastr with safe defaults
+    try {
+        toastr.options = {
+            closeButton: true,
+            debug: false,
+            newestOnTop: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            preventDuplicates: false,
+            onclick: null,
+            showDuration: 300,
+            hideDuration: 1000,
+            timeOut: 5000,
+            extendedTimeOut: 1000,
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut"
+        };
+    } catch (e) {
+        console.error('Error configuring toastr:', e);
+        return;
+    }
+
+    // Safe notification display function
+    function showNotification(type, message, title) {
+        try {
+            if (toastr[type] && typeof toastr[type] === 'function') {
+                toastr[type](message, title);
+            } else {
+                console.error('Invalid toastr method:', type);
+            }
+        } catch (e) {
+            console.error('Error showing notification:', e);
+        }
+    }
+
+    // Process notifications
+    const notifications = [
+        { type: 'success', message: '@Html.Raw(Json.Encode(TempData["Alert"]))', title: "Success" },
+        { type: 'error', message: '@Html.Raw(Json.Encode(TempData["Alert1"]))', title: "Error" },
+        { type: 'info', message: '@Html.Raw(Json.Encode(TempData["InfoAlert"]))', title: "Information" },
+        { type: 'warning', message: '@Html.Raw(Json.Encode(TempData["WarningAlert"]))', title: "Warning" }
+    ];
+
+    notifications.forEach(notification => {
+        if (notification.message && notification.message !== "null") {
+            showNotification(notification.type, notification.message, notification.title);
+        }
+    });
+});
+
+
+
+
+
+    document.getElementById('caregiverSearch').addEventListener('keyup', function () {
+        const searchValue = this.value.toLowerCase();
+        const rows = document.querySelectorAll("table tbody tr");
+
+        rows.forEach(row => {
+            const text = row.innerText.toLowerCase();
+            if (text.includes(searchValue)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+
+    function confirmRemove(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you really want to remove this room?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, remove it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '@Url.Action("RemoveRoom", "Elder")',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (response) {
+                        if (response.success) {
+                            $('#row-' + id).fadeOut(); // remove row
+                            Swal.fire('Removed!', response.message, 'success').then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire('Oops!', response.message, 'error');
+                        }
+                    },
+                    error: function () {
+                        Swal.fire('Error!', 'Something went wrong.', 'error');
+                    }
+                });
+            }
+        });
+    }
+</script>

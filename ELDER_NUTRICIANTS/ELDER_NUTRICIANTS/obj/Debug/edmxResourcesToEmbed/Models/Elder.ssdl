@@ -1,0 +1,976 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ELDER_NUTRICIANTSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="APP_USER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="PASSWORD" Type="nvarchar(max)" />
+    <Property Name="FULL_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="ROLE" Type="varchar" MaxLength="50" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="LOGIN_ATTEMPT" Type="int" />
+    <Property Name="ENTER_DATE" Type="date" />
+    <Property Name="ENTER_USER" Type="varchar" MaxLength="50" />
+    <Property Name="REF_ID" Type="int" />
+    <Property Name="PIC" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="CAREGIVER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CAREGIVER_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="FULL_NAME" Type="varchar" MaxLength="500" />
+    <Property Name="GENDER" Type="varchar" MaxLength="50" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="NIC" Type="varchar" MaxLength="50" />
+    <Property Name="CONTACT_NO" Type="varchar" MaxLength="50" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="ADDRESS" Type="varchar(max)" />
+    <Property Name="PROFILE_IMG" Type="varchar(max)" />
+    <Property Name="HIGHER_QULIFICATION" Type="varchar(max)" />
+    <Property Name="YEAR_OF_EXPERIENCE" Type="int" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="ENTER_DATE" Type="datetime" />
+    <Property Name="ENTER_BY" Type="varchar" MaxLength="50" />
+    <Property Name="UPDATE_BY" Type="varchar" MaxLength="50" />
+    <Property Name="UPDATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CAREGIVER_ASSIGN_ELDER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CAREGIVER_ID" Type="int" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="ROLE" Type="varchar" MaxLength="50" />
+    <Property Name="ASSIGNED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar(max)" />
+    <Property Name="CREATE_DATE" Type="date" />
+    <Property Name="STATUS" Type="int" />
+  </EntityType>
+  <EntityType Name="COMPANY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="COMPANYNAME" Type="varchar(max)" />
+    <Property Name="ADDRESS1" Type="varchar(max)" />
+    <Property Name="ADDRESS2" Type="varchar(max)" />
+    <Property Name="TEL1" Type="varchar(max)" />
+    <Property Name="TEL2" Type="varchar(max)" />
+    <Property Name="EMAIL" Type="varchar(max)" />
+    <Property Name="EMAIL_PASSWORD" Type="varchar(max)" />
+    <Property Name="WEBSITE" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="DOCTOR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="D_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="FULL_NAME" Type="varchar" MaxLength="500" />
+    <Property Name="GENDER" Type="varchar" MaxLength="50" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="SPECIALIZATION" Type="varchar" MaxLength="500" />
+    <Property Name="MEDICAL_LICENSE_NO" Type="varchar" MaxLength="50" />
+    <Property Name="CONTACT_NO" Type="varchar" MaxLength="50" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="REGISTERED_HOSPITAL" Type="varchar" MaxLength="500" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="500" />
+    <Property Name="JOINED_DATE" Type="date" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="PROFILE_IMAGE" Type="varchar(max)" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="UPDATE_DATE" Type="datetime" />
+    <Property Name="UPDATED_BY" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DONETION_EVENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DONATION_EVENT_NAME" Type="varchar" MaxLength="500" />
+    <Property Name="DONATE_DATE" Type="datetime" />
+    <Property Name="DESCRIPTION" Type="varchar(max)" />
+    <Property Name="CREATED_DATE" Type="date" />
+    <Property Name="STATUS" Type="int" />
+  </EntityType>
+  <EntityType Name="DONETION_EVENT_ITEMS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DONETION_EVENT_ID" Type="int" />
+    <Property Name="GROCERY_ID" Type="int" />
+    <Property Name="QTY_IN_GRAMS" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DESCRIPTION" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="ELDER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ELDER_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="FULL_NAME" Type="varchar" MaxLength="500" />
+    <Property Name="NIC" Type="varchar" MaxLength="50" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="GENDER" Type="varchar" MaxLength="50" />
+    <Property Name="CONTACT_NO" Type="varchar" MaxLength="50" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="500" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="CREATE_DATE" Type="datetime" />
+    <Property Name="UPDATE_DATE" Type="datetime" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="UPDATED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="IS_DEAD" Type="int" />
+    <Property Name="PROFIL_PIC" Type="varchar(max)" />
+    <Property Name="ROOM_NUMBER" Type="varchar" MaxLength="50" />
+    <Property Name="CURRENT_SUGAR_LEVEL" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CURRENT_SUGAR_LEVEL_ENTER_DATE" Type="date" />
+    <Property Name="IS_DIABITCS" Type="int" />
+  </EntityType>
+  <EntityType Name="ELDER_CHECKUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="DOC_ID" Type="int" />
+    <Property Name="CHECKUP_DATE" Type="date" />
+    <Property Name="PURPOSE" Type="varchar" MaxLength="500" />
+    <Property Name="REMARKS" Type="varchar(max)" />
+    <Property Name="NEXT_FOLLOW_UP_DATE" Type="date" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="CREATE_BY" Type="varchar" MaxLength="50" />
+    <Property Name="CREATE_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ELDER_DEATH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="DATE_OF_DEATH" Type="date" />
+    <Property Name="TIME_OF_DEATH" Type="time" Precision="7" />
+    <Property Name="CAUSE_OF_DEATH" Type="varchar(max)" />
+    <Property Name="PLACE_OF_DEATH" Type="varchar" MaxLength="50" />
+    <Property Name="REPORTED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="REMARKS" Type="varchar(max)" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="ENTER_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ELDER_GURDIAN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="E_GURDIAN_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="FULL_NAME" Type="varchar" MaxLength="500" />
+    <Property Name="RELATIONSHIP" Type="varchar" MaxLength="50" />
+    <Property Name="CONTACT_NO" Type="varchar" MaxLength="50" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="500" />
+    <Property Name="STATUS" Type="int" />
+  </EntityType>
+  <EntityType Name="FEEDBACKS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="CAREGIVER_ID" Type="int" />
+    <Property Name="FEEDBACK_TYPE" Type="varchar" MaxLength="50" />
+    <Property Name="FEEDBACK_DESC" Type="varchar(max)" />
+    <Property Name="ADMIN_REPLY" Type="varchar(max)" />
+    <Property Name="REPLY_DATE" Type="datetime" />
+    <Property Name="SUBMITED_DATE" Type="date" />
+    <Property Name="FEEDBACK_ENTERED_USE" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="GLUCODE_READING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="READING_DATE" Type="date" />
+    <Property Name="GLUCOSE_LEVEL" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="RECORDED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="DOC_ID" Type="int" />
+    <Property Name="SOURCE" Type="varchar" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar(max)" />
+    <Property Name="CREATE_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GLUCOSE_READING_REPORT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="GLUCODE_READING_ID" Type="int" />
+    <Property Name="REPORT_UPLOAD_DATE" Type="datetime" />
+    <Property Name="REPORT" Type="varchar(max)" />
+    <Property Name="STATUS" Type="int" />
+  </EntityType>
+  <EntityType Name="GROCERY_ITEM_CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CATEGORY_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="DATE" Type="date" />
+    <Property Name="TYPE" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="GROCERY_ITEM_NUTRICIANTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GROCERY_ITEMS_ID" Type="int" />
+    <Property Name="CALORIES_kcal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PROTEIN" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CARBS" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="SUGAR" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FIBER" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FAT_TOTAL" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FAT_SATURED" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CHOLESTROL" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="SODIUM" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="POTESSIUM" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IRON" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="VITAMIN_A" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="VITAMIN_C" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="GROCERY_ITEMS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="500" />
+    <Property Name="CATEGORY_ID" Type="int" />
+    <Property Name="BRAND" Type="varchar" MaxLength="50" />
+    <Property Name="BARCODE" Type="varchar" MaxLength="50" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="PICTURE" Type="varchar(max)" />
+    <Property Name="FOOD_GROUP" Type="varchar" MaxLength="50" />
+    <Property Name="SOURCE" Type="varchar" MaxLength="50" />
+    <Property Name="DATE" Type="datetime" />
+    <Property Name="DOC_ID" Type="int" />
+    <Property Name="CREATE_BY" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="HEALTH_ALERT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="ALERT_TYPE" Type="varchar" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar(max)" />
+    <Property Name="SUGGESTED_ACTION" Type="varchar(max)" />
+    <Property Name="NOTIFICATION_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HEALTH_PREDICTION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="PREDICTION_TYPE" Type="varchar" MaxLength="50" />
+    <Property Name="RISK_LEVEL" Type="varchar" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar(max)" />
+    <Property Name="DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="INCREAMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar(max)" Nullable="false" />
+    <Property Name="PAD" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NO" Type="int" Nullable="false" />
+    <Property Name="TYPE" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MDCODE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CODE" Type="int" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MEAL_PLANS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="PLAN_DATE" Type="date" />
+    <Property Name="PLAN_TYPE" Type="varchar" MaxLength="50" />
+    <Property Name="RECOMENDED_DOC_ID" Type="int" />
+    <Property Name="CREATE_BY" Type="varchar" MaxLength="50" />
+    <Property Name="CREATE_DATE" Type="date" />
+    <Property Name="DESCRIPTION" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="MEAL_PLANS_ITEMS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MEAL_PLAN_ID" Type="int" />
+    <Property Name="GROCEY_ID" Type="int" />
+    <Property Name="QUANTITY_IN_GRAMS" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DESCRIPTION" Type="varchar(max)" />
+    <Property Name="CREATE_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ROOM_ASSIGNED">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ROOM_ID" Type="int" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="ASSIGNED_DATE" Type="date" />
+    <Property Name="RELEASED_DATE" Type="date" />
+    <Property Name="ASSIGNED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar(max)" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="ENTED_DATE" Type="date" />
+    <Property Name="UPDATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ROOMS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ROOM_NUMBER" Type="varchar" MaxLength="50" />
+    <Property Name="FLOOR_NUMBER" Type="varchar" MaxLength="50" />
+    <Property Name="ROOM_TYPE" Type="varchar" MaxLength="50" />
+    <Property Name="CAPACITY" Type="int" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="DESCRIPTION" Type="varchar(max)" />
+    <Property Name="CREATE_DATE" Type="date" />
+    <Property Name="UPDATE_DATE" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ELDER_NUTRICIANTS.dbo.V_ASSIGN_CAREGIVER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_ASSIGN_CAREGIVER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="CAREGIVER_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="FULL_NAME" Type="varchar" MaxLength="500" />
+    <Property Name="PROFILE_IMG" Type="varchar(max)" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="CAREGIVER_ID" Type="int" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="ROLE" Type="varchar" MaxLength="50" />
+    <Property Name="ASSIGNED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar(max)" />
+    <Property Name="CREATE_DATE" Type="date" />
+    <Property Name="STATUS" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ELDER_NUTRICIANTS.dbo.V_ASSIGN_ROOMS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_ASSIGN_ROOMS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ROOM_NUMBER" Type="varchar" MaxLength="50" />
+    <Property Name="ROOM_TYPE" Type="varchar" MaxLength="50" />
+    <Property Name="CAPACITY" Type="int" />
+    <Property Name="DESCRIPTION" Type="varchar(max)" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ROOM_ID" Type="int" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="ASSIGNED_DATE" Type="date" />
+    <Property Name="ASSIGNED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="ENTED_DATE" Type="date" />
+    <Property Name="UPDATED_DATE" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ELDER_NUTRICIANTS.dbo.V_ELDER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_ELDER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ELDER_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="FULL_NAME" Type="varchar" MaxLength="500" />
+    <Property Name="NIC" Type="varchar" MaxLength="50" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="GENDER" Type="varchar" MaxLength="50" />
+    <Property Name="CONTACT_NO" Type="varchar" MaxLength="50" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="500" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="CREATE_DATE" Type="datetime" />
+    <Property Name="UPDATE_DATE" Type="datetime" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="UPDATED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="IS_DEAD" Type="int" />
+    <Property Name="PROFIL_PIC" Type="varchar(max)" />
+    <Property Name="ROOM_NUMBER" Type="varchar" MaxLength="50" />
+    <Property Name="CURRENT_SUGAR_LEVEL" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CURRENT_SUGAR_LEVEL_ENTER_DATE" Type="date" />
+    <Property Name="IS_DIABITCS" Type="int" />
+    <Property Name="E_GURDIAN_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="G_FULL_NAME" Type="varchar" MaxLength="500" />
+    <Property Name="RELATIONSHIP" Type="varchar" MaxLength="50" />
+    <Property Name="G_CONTACT_NO" Type="varchar" MaxLength="50" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ELDER_NUTRICIANTS.dbo.V_ELDER_BLOOD_RPT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_ELDER_BLOOD_RPT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ELDER_ID" Type="int" />
+    <Property Name="READING_DATE" Type="date" />
+    <Property Name="GLUCOSE_LEVEL" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="RECORDED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="DOC_ID" Type="int" />
+    <Property Name="SOURCE" Type="varchar" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar(max)" />
+    <Property Name="CREATE_DATE" Type="datetime" />
+    <Property Name="REPORT_UPLOAD_DATE" Type="datetime" />
+    <Property Name="REPORT" Type="varchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ELDER_NUTRICIANTS.dbo.V_MEALS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_MEALS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="CATEGORY_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="500" />
+    <Property Name="CATEGORY_ID" Type="int" />
+    <Property Name="BRAND" Type="varchar" MaxLength="50" />
+    <Property Name="BARCODE" Type="varchar" MaxLength="50" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="PICTURE" Type="varchar(max)" />
+    <Property Name="FOOD_GROUP" Type="varchar" MaxLength="50" />
+    <Property Name="SOURCE" Type="varchar" MaxLength="50" />
+    <Property Name="DATE" Type="datetime" />
+    <Property Name="DOC_ID" Type="int" />
+    <Property Name="CREATE_BY" Type="varchar" MaxLength="50" />
+    <Property Name="TYPE" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_CAREGIVER_ASSIGN_ELDER_CAREGIVER">
+    <End Role="CAREGIVER" Type="Self.CAREGIVER" Multiplicity="0..1" />
+    <End Role="CAREGIVER_ASSIGN_ELDER" Type="Self.CAREGIVER_ASSIGN_ELDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAREGIVER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CAREGIVER_ASSIGN_ELDER">
+        <PropertyRef Name="CAREGIVER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CAREGIVER_ASSIGN_ELDER_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="CAREGIVER_ASSIGN_ELDER" Type="Self.CAREGIVER_ASSIGN_ELDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CAREGIVER_ASSIGN_ELDER">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONETION_EVENT_ITEMS_DONETION_EVENT">
+    <End Role="DONETION_EVENT" Type="Self.DONETION_EVENT" Multiplicity="0..1" />
+    <End Role="DONETION_EVENT_ITEMS" Type="Self.DONETION_EVENT_ITEMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONETION_EVENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DONETION_EVENT_ITEMS">
+        <PropertyRef Name="DONETION_EVENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONETION_EVENT_ITEMS_GROCERY_ITEMS">
+    <End Role="GROCERY_ITEMS" Type="Self.GROCERY_ITEMS" Multiplicity="0..1" />
+    <End Role="DONETION_EVENT_ITEMS" Type="Self.DONETION_EVENT_ITEMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROCERY_ITEMS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DONETION_EVENT_ITEMS">
+        <PropertyRef Name="GROCERY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ELDER_CHECKUP_DOCTOR">
+    <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="0..1" />
+    <End Role="ELDER_CHECKUP" Type="Self.ELDER_CHECKUP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ELDER_CHECKUP">
+        <PropertyRef Name="DOC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ELDER_CHECKUP_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="ELDER_CHECKUP" Type="Self.ELDER_CHECKUP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ELDER_CHECKUP">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ELDER_DEATH_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="ELDER_DEATH" Type="Self.ELDER_DEATH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ELDER_DEATH">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ELDER_GURDIAN_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="ELDER_GURDIAN" Type="Self.ELDER_GURDIAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ELDER_GURDIAN">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FEEDBACKS_CAREGIVER">
+    <End Role="CAREGIVER" Type="Self.CAREGIVER" Multiplicity="0..1" />
+    <End Role="FEEDBACKS" Type="Self.FEEDBACKS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAREGIVER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEEDBACKS">
+        <PropertyRef Name="CAREGIVER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FEEDBACKS_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="FEEDBACKS" Type="Self.FEEDBACKS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEEDBACKS">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GLUCODE_READING_DOCTOR">
+    <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="0..1" />
+    <End Role="GLUCODE_READING" Type="Self.GLUCODE_READING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GLUCODE_READING">
+        <PropertyRef Name="DOC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GLUCODE_READING_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="GLUCODE_READING" Type="Self.GLUCODE_READING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GLUCODE_READING">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GLUCOSE_READING_REPORT_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="GLUCOSE_READING_REPORT" Type="Self.GLUCOSE_READING_REPORT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GLUCOSE_READING_REPORT">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GLUCOSE_READING_REPORT_GLUCODE_READING">
+    <End Role="GLUCODE_READING" Type="Self.GLUCODE_READING" Multiplicity="0..1" />
+    <End Role="GLUCOSE_READING_REPORT" Type="Self.GLUCOSE_READING_REPORT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GLUCODE_READING">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GLUCOSE_READING_REPORT">
+        <PropertyRef Name="GLUCODE_READING_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GROCERY_ITEM_NUTRICIANTS_GROCERY_ITEMS">
+    <End Role="GROCERY_ITEMS" Type="Self.GROCERY_ITEMS" Multiplicity="0..1" />
+    <End Role="GROCERY_ITEM_NUTRICIANTS" Type="Self.GROCERY_ITEM_NUTRICIANTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROCERY_ITEMS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GROCERY_ITEM_NUTRICIANTS">
+        <PropertyRef Name="GROCERY_ITEMS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GROCERY_ITEMS_GROCERY_ITEM_CATEGORY">
+    <End Role="GROCERY_ITEM_CATEGORY" Type="Self.GROCERY_ITEM_CATEGORY" Multiplicity="0..1" />
+    <End Role="GROCERY_ITEMS" Type="Self.GROCERY_ITEMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROCERY_ITEM_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GROCERY_ITEMS">
+        <PropertyRef Name="CATEGORY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HEALTH_ALERT_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="HEALTH_ALERT" Type="Self.HEALTH_ALERT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HEALTH_ALERT">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HEALTH_PREDICTION_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="HEALTH_PREDICTION" Type="Self.HEALTH_PREDICTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HEALTH_PREDICTION">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MEAL_PLANS_DOCTOR">
+    <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="0..1" />
+    <End Role="MEAL_PLANS" Type="Self.MEAL_PLANS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MEAL_PLANS">
+        <PropertyRef Name="RECOMENDED_DOC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MEAL_PLANS_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="MEAL_PLANS" Type="Self.MEAL_PLANS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MEAL_PLANS">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MEAL_PLANS_ITEMS_GROCERY_ITEMS">
+    <End Role="GROCERY_ITEMS" Type="Self.GROCERY_ITEMS" Multiplicity="0..1" />
+    <End Role="MEAL_PLANS_ITEMS" Type="Self.MEAL_PLANS_ITEMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROCERY_ITEMS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MEAL_PLANS_ITEMS">
+        <PropertyRef Name="GROCEY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MEAL_PLANS_ITEMS_MEAL_PLANS">
+    <End Role="MEAL_PLANS" Type="Self.MEAL_PLANS" Multiplicity="0..1" />
+    <End Role="MEAL_PLANS_ITEMS" Type="Self.MEAL_PLANS_ITEMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEAL_PLANS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MEAL_PLANS_ITEMS">
+        <PropertyRef Name="MEAL_PLAN_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROOM_ASSIGNED_ELDER">
+    <End Role="ELDER" Type="Self.ELDER" Multiplicity="0..1" />
+    <End Role="ROOM_ASSIGNED" Type="Self.ROOM_ASSIGNED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ROOM_ASSIGNED">
+        <PropertyRef Name="ELDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROOM_ASSIGNED_ROOMS">
+    <End Role="ROOMS" Type="Self.ROOMS" Multiplicity="0..1" />
+    <End Role="ROOM_ASSIGNED" Type="Self.ROOM_ASSIGNED" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROOMS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ROOM_ASSIGNED">
+        <PropertyRef Name="ROOM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="PROC_INCREMENT_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TYPE" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_INCREMENT_ID_UPADATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TYPE" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ELDER_NUTRICIANTSModelStoreContainer">
+    <EntitySet Name="APP_USER" EntityType="Self.APP_USER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CAREGIVER" EntityType="Self.CAREGIVER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CAREGIVER_ASSIGN_ELDER" EntityType="Self.CAREGIVER_ASSIGN_ELDER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COMPANY" EntityType="Self.COMPANY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCTOR" EntityType="Self.DOCTOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DONETION_EVENT" EntityType="Self.DONETION_EVENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DONETION_EVENT_ITEMS" EntityType="Self.DONETION_EVENT_ITEMS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ELDER" EntityType="Self.ELDER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ELDER_CHECKUP" EntityType="Self.ELDER_CHECKUP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ELDER_DEATH" EntityType="Self.ELDER_DEATH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ELDER_GURDIAN" EntityType="Self.ELDER_GURDIAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FEEDBACKS" EntityType="Self.FEEDBACKS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GLUCODE_READING" EntityType="Self.GLUCODE_READING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GLUCOSE_READING_REPORT" EntityType="Self.GLUCOSE_READING_REPORT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GROCERY_ITEM_CATEGORY" EntityType="Self.GROCERY_ITEM_CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GROCERY_ITEM_NUTRICIANTS" EntityType="Self.GROCERY_ITEM_NUTRICIANTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GROCERY_ITEMS" EntityType="Self.GROCERY_ITEMS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HEALTH_ALERT" EntityType="Self.HEALTH_ALERT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HEALTH_PREDICTION" EntityType="Self.HEALTH_PREDICTION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INCREAMENT" EntityType="Self.INCREAMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MDCODE" EntityType="Self.MDCODE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MEAL_PLANS" EntityType="Self.MEAL_PLANS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MEAL_PLANS_ITEMS" EntityType="Self.MEAL_PLANS_ITEMS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROOM_ASSIGNED" EntityType="Self.ROOM_ASSIGNED" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROOMS" EntityType="Self.ROOMS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="V_ASSIGN_CAREGIVER" EntityType="Self.V_ASSIGN_CAREGIVER" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_ASSIGN_CAREGIVER].[CAREGIVER_CODE] AS [CAREGIVER_CODE], 
+    [V_ASSIGN_CAREGIVER].[FULL_NAME] AS [FULL_NAME], 
+    [V_ASSIGN_CAREGIVER].[PROFILE_IMG] AS [PROFILE_IMG], 
+    [V_ASSIGN_CAREGIVER].[ID] AS [ID], 
+    [V_ASSIGN_CAREGIVER].[CAREGIVER_ID] AS [CAREGIVER_ID], 
+    [V_ASSIGN_CAREGIVER].[ELDER_ID] AS [ELDER_ID], 
+    [V_ASSIGN_CAREGIVER].[ROLE] AS [ROLE], 
+    [V_ASSIGN_CAREGIVER].[ASSIGNED_BY] AS [ASSIGNED_BY], 
+    [V_ASSIGN_CAREGIVER].[DESCRIPTION] AS [DESCRIPTION], 
+    [V_ASSIGN_CAREGIVER].[CREATE_DATE] AS [CREATE_DATE], 
+    [V_ASSIGN_CAREGIVER].[STATUS] AS [STATUS]
+    FROM [dbo].[V_ASSIGN_CAREGIVER] AS [V_ASSIGN_CAREGIVER]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_ASSIGN_ROOMS" EntityType="Self.V_ASSIGN_ROOMS" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_ASSIGN_ROOMS].[ROOM_NUMBER] AS [ROOM_NUMBER], 
+    [V_ASSIGN_ROOMS].[ROOM_TYPE] AS [ROOM_TYPE], 
+    [V_ASSIGN_ROOMS].[CAPACITY] AS [CAPACITY], 
+    [V_ASSIGN_ROOMS].[DESCRIPTION] AS [DESCRIPTION], 
+    [V_ASSIGN_ROOMS].[ID] AS [ID], 
+    [V_ASSIGN_ROOMS].[ROOM_ID] AS [ROOM_ID], 
+    [V_ASSIGN_ROOMS].[ELDER_ID] AS [ELDER_ID], 
+    [V_ASSIGN_ROOMS].[ASSIGNED_DATE] AS [ASSIGNED_DATE], 
+    [V_ASSIGN_ROOMS].[ASSIGNED_BY] AS [ASSIGNED_BY], 
+    [V_ASSIGN_ROOMS].[STATUS] AS [STATUS], 
+    [V_ASSIGN_ROOMS].[ENTED_DATE] AS [ENTED_DATE], 
+    [V_ASSIGN_ROOMS].[UPDATED_DATE] AS [UPDATED_DATE]
+    FROM [dbo].[V_ASSIGN_ROOMS] AS [V_ASSIGN_ROOMS]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_ELDER" EntityType="Self.V_ELDER" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_ELDER].[ID] AS [ID], 
+    [V_ELDER].[ELDER_CODE] AS [ELDER_CODE], 
+    [V_ELDER].[FULL_NAME] AS [FULL_NAME], 
+    [V_ELDER].[NIC] AS [NIC], 
+    [V_ELDER].[DOB] AS [DOB], 
+    [V_ELDER].[GENDER] AS [GENDER], 
+    [V_ELDER].[CONTACT_NO] AS [CONTACT_NO], 
+    [V_ELDER].[ADDRESS] AS [ADDRESS], 
+    [V_ELDER].[STATUS] AS [STATUS], 
+    [V_ELDER].[CREATE_DATE] AS [CREATE_DATE], 
+    [V_ELDER].[UPDATE_DATE] AS [UPDATE_DATE], 
+    [V_ELDER].[CREATED_BY] AS [CREATED_BY], 
+    [V_ELDER].[UPDATED_BY] AS [UPDATED_BY], 
+    [V_ELDER].[IS_DEAD] AS [IS_DEAD], 
+    [V_ELDER].[PROFIL_PIC] AS [PROFIL_PIC], 
+    [V_ELDER].[ROOM_NUMBER] AS [ROOM_NUMBER], 
+    [V_ELDER].[CURRENT_SUGAR_LEVEL] AS [CURRENT_SUGAR_LEVEL], 
+    [V_ELDER].[CURRENT_SUGAR_LEVEL_ENTER_DATE] AS [CURRENT_SUGAR_LEVEL_ENTER_DATE], 
+    [V_ELDER].[IS_DIABITCS] AS [IS_DIABITCS], 
+    [V_ELDER].[E_GURDIAN_CODE] AS [E_GURDIAN_CODE], 
+    [V_ELDER].[G_FULL_NAME] AS [G_FULL_NAME], 
+    [V_ELDER].[RELATIONSHIP] AS [RELATIONSHIP], 
+    [V_ELDER].[G_CONTACT_NO] AS [G_CONTACT_NO], 
+    [V_ELDER].[EMAIL] AS [EMAIL]
+    FROM [dbo].[V_ELDER] AS [V_ELDER]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_ELDER_BLOOD_RPT" EntityType="Self.V_ELDER_BLOOD_RPT" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_ELDER_BLOOD_RPT].[ID] AS [ID], 
+    [V_ELDER_BLOOD_RPT].[ELDER_ID] AS [ELDER_ID], 
+    [V_ELDER_BLOOD_RPT].[READING_DATE] AS [READING_DATE], 
+    [V_ELDER_BLOOD_RPT].[GLUCOSE_LEVEL] AS [GLUCOSE_LEVEL], 
+    [V_ELDER_BLOOD_RPT].[RECORDED_BY] AS [RECORDED_BY], 
+    [V_ELDER_BLOOD_RPT].[DOC_ID] AS [DOC_ID], 
+    [V_ELDER_BLOOD_RPT].[SOURCE] AS [SOURCE], 
+    [V_ELDER_BLOOD_RPT].[DESCRIPTION] AS [DESCRIPTION], 
+    [V_ELDER_BLOOD_RPT].[CREATE_DATE] AS [CREATE_DATE], 
+    [V_ELDER_BLOOD_RPT].[REPORT_UPLOAD_DATE] AS [REPORT_UPLOAD_DATE], 
+    [V_ELDER_BLOOD_RPT].[REPORT] AS [REPORT]
+    FROM [dbo].[V_ELDER_BLOOD_RPT] AS [V_ELDER_BLOOD_RPT]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_MEALS" EntityType="Self.V_MEALS" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_MEALS].[CATEGORY_NAME] AS [CATEGORY_NAME], 
+    [V_MEALS].[ID] AS [ID], 
+    [V_MEALS].[NAME] AS [NAME], 
+    [V_MEALS].[CATEGORY_ID] AS [CATEGORY_ID], 
+    [V_MEALS].[BRAND] AS [BRAND], 
+    [V_MEALS].[BARCODE] AS [BARCODE], 
+    [V_MEALS].[STATUS] AS [STATUS], 
+    [V_MEALS].[PICTURE] AS [PICTURE], 
+    [V_MEALS].[FOOD_GROUP] AS [FOOD_GROUP], 
+    [V_MEALS].[SOURCE] AS [SOURCE], 
+    [V_MEALS].[DATE] AS [DATE], 
+    [V_MEALS].[DOC_ID] AS [DOC_ID], 
+    [V_MEALS].[CREATE_BY] AS [CREATE_BY], 
+    [V_MEALS].[TYPE] AS [TYPE]
+    FROM [dbo].[V_MEALS] AS [V_MEALS]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_CAREGIVER_ASSIGN_ELDER_CAREGIVER" Association="Self.FK_CAREGIVER_ASSIGN_ELDER_CAREGIVER">
+      <End Role="CAREGIVER" EntitySet="CAREGIVER" />
+      <End Role="CAREGIVER_ASSIGN_ELDER" EntitySet="CAREGIVER_ASSIGN_ELDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CAREGIVER_ASSIGN_ELDER_ELDER" Association="Self.FK_CAREGIVER_ASSIGN_ELDER_ELDER">
+      <End Role="ELDER" EntitySet="ELDER" />
+      <End Role="CAREGIVER_ASSIGN_ELDER" EntitySet="CAREGIVER_ASSIGN_ELDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONETION_EVENT_ITEMS_DONETION_EVENT" Association="Self.FK_DONETION_EVENT_ITEMS_DONETION_EVENT">
+      <End Role="DONETION_EVENT" EntitySet="DONETION_EVENT" />
+      <End Role="DONETION_EVENT_ITEMS" EntitySet="DONETION_EVENT_ITEMS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONETION_EVENT_ITEMS_GROCERY_ITEMS" Association="Self.FK_DONETION_EVENT_ITEMS_GROCERY_ITEMS">
+      <End Role="GROCERY_ITEMS" EntitySet="GROCERY_ITEMS" />
+      <End Role="DONETION_EVENT_ITEMS" EntitySet="DONETION_EVENT_ITEMS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ELDER_CHECKUP_DOCTOR" Association="Self.FK_ELDER_CHECKUP_DOCTOR">
+      <End Role="DOCTOR" EntitySet="DOCTOR" />
+      <End Role="ELDER_CHECKUP" EntitySet="ELDER_CHECKUP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ELDER_CHECKUP_ELDER" Association="Self.FK_ELDER_CHECKUP_ELDER">
+      <End Role="ELDER" EntitySet="ELDER" />
+      <End Role="ELDER_CHECKUP" EntitySet="ELDER_CHECKUP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ELDER_DEATH_ELDER" Association="Self.FK_ELDER_DEATH_ELDER">
+      <End Role="ELDER" EntitySet="ELDER" />
+      <End Role="ELDER_DEATH" EntitySet="ELDER_DEATH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ELDER_GURDIAN_ELDER" Association="Self.FK_ELDER_GURDIAN_ELDER">
+      <End Role="ELDER" EntitySet="ELDER" />
+      <End Role="ELDER_GURDIAN" EntitySet="ELDER_GURDIAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FEEDBACKS_CAREGIVER" Association="Self.FK_FEEDBACKS_CAREGIVER">
+      <End Role="CAREGIVER" EntitySet="CAREGIVER" />
+      <End Role="FEEDBACKS" EntitySet="FEEDBACKS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FEEDBACKS_ELDER" Association="Self.FK_FEEDBACKS_ELDER">
+      <End Role="ELDER" EntitySet="ELDER" />
+      <End Role="FEEDBACKS" EntitySet="FEEDBACKS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GLUCODE_READING_DOCTOR" Association="Self.FK_GLUCODE_READING_DOCTOR">
+      <End Role="DOCTOR" EntitySet="DOCTOR" />
+      <End Role="GLUCODE_READING" EntitySet="GLUCODE_READING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GLUCODE_READING_ELDER" Association="Self.FK_GLUCODE_READING_ELDER">
+      <End Role="ELDER" EntitySet="ELDER" />
+      <End Role="GLUCODE_READING" EntitySet="GLUCODE_READING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GLUCOSE_READING_REPORT_ELDER" Association="Self.FK_GLUCOSE_READING_REPORT_ELDER">
+      <End Role="ELDER" EntitySet="ELDER" />
+      <End Role="GLUCOSE_READING_REPORT" EntitySet="GLUCOSE_READING_REPORT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GLUCOSE_READING_REPORT_GLUCODE_READING" Association="Self.FK_GLUCOSE_READING_REPORT_GLUCODE_READING">
+      <End Role="GLUCODE_READING" EntitySet="GLUCODE_READING" />
+      <End Role="GLUCOSE_READING_REPORT" EntitySet="GLUCOSE_READING_REPORT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GROCERY_ITEM_NUTRICIANTS_GROCERY_ITEMS" Association="Self.FK_GROCERY_ITEM_NUTRICIANTS_GROCERY_ITEMS">
+      <End Role="GROCERY_ITEMS" EntitySet="GROCERY_ITEMS" />
+      <End Role="GROCERY_ITEM_NUTRICIANTS" EntitySet="GROCERY_ITEM_NUTRICIANTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GROCERY_ITEMS_GROCERY_ITEM_CATEGORY" Association="Self.FK_GROCERY_ITEMS_GROCERY_ITEM_CATEGORY">
+      <End Role="GROCERY_ITEM_CATEGORY" EntitySet="GROCERY_ITEM_CATEGORY" />
+      <End Role="GROCERY_ITEMS" EntitySet="GROCERY_ITEMS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HEALTH_ALERT_ELDER" Association="Self.FK_HEALTH_ALERT_ELDER">
+      <End Role="ELDER" EntitySet="ELDER" />
+      <End Role="HEALTH_ALERT" EntitySet="HEALTH_ALERT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HEALTH_PREDICTION_ELDER" Association="Self.FK_HEALTH_PREDICTION_ELDER">
+      <End Role="ELDER" EntitySet="ELDER" />
+      <End Role="HEALTH_PREDICTION" EntitySet="HEALTH_PREDICTION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MEAL_PLANS_DOCTOR" Association="Self.FK_MEAL_PLANS_DOCTOR">
+      <End Role="DOCTOR" EntitySet="DOCTOR" />
+      <End Role="MEAL_PLANS" EntitySet="MEAL_PLANS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MEAL_PLANS_ELDER" Association="Self.FK_MEAL_PLANS_ELDER">
+      <End Role="ELDER" EntitySet="ELDER" />
+      <End Role="MEAL_PLANS" EntitySet="MEAL_PLANS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MEAL_PLANS_ITEMS_GROCERY_ITEMS" Association="Self.FK_MEAL_PLANS_ITEMS_GROCERY_ITEMS">
+      <End Role="GROCERY_ITEMS" EntitySet="GROCERY_ITEMS" />
+      <End Role="MEAL_PLANS_ITEMS" EntitySet="MEAL_PLANS_ITEMS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MEAL_PLANS_ITEMS_MEAL_PLANS" Association="Self.FK_MEAL_PLANS_ITEMS_MEAL_PLANS">
+      <End Role="MEAL_PLANS" EntitySet="MEAL_PLANS" />
+      <End Role="MEAL_PLANS_ITEMS" EntitySet="MEAL_PLANS_ITEMS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROOM_ASSIGNED_ELDER" Association="Self.FK_ROOM_ASSIGNED_ELDER">
+      <End Role="ELDER" EntitySet="ELDER" />
+      <End Role="ROOM_ASSIGNED" EntitySet="ROOM_ASSIGNED" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROOM_ASSIGNED_ROOMS" Association="Self.FK_ROOM_ASSIGNED_ROOMS">
+      <End Role="ROOMS" EntitySet="ROOMS" />
+      <End Role="ROOM_ASSIGNED" EntitySet="ROOM_ASSIGNED" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

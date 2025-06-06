@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ELDER_NUTRICIANTSModelStoreContainer" CdmEntityContainer="ELDER_NUTRICIANTSEntities">
+    <EntitySetMapping Name="CAREGIVERs">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.CAREGIVER">
+        <MappingFragment StoreEntitySet="CAREGIVER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CAREGIVER_CODE" ColumnName="CAREGIVER_CODE" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="NIC" ColumnName="NIC" />
+          <ScalarProperty Name="CONTACT_NO" ColumnName="CONTACT_NO" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="PROFILE_IMG" ColumnName="PROFILE_IMG" />
+          <ScalarProperty Name="HIGHER_QULIFICATION" ColumnName="HIGHER_QULIFICATION" />
+          <ScalarProperty Name="YEAR_OF_EXPERIENCE" ColumnName="YEAR_OF_EXPERIENCE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="ENTER_DATE" ColumnName="ENTER_DATE" />
+          <ScalarProperty Name="ENTER_BY" ColumnName="ENTER_BY" />
+          <ScalarProperty Name="UPDATE_BY" ColumnName="UPDATE_BY" />
+          <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCTORs">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.DOCTOR">
+        <MappingFragment StoreEntitySet="DOCTOR">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="D_CODE" ColumnName="D_CODE" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="SPECIALIZATION" ColumnName="SPECIALIZATION" />
+          <ScalarProperty Name="MEDICAL_LICENSE_NO" ColumnName="MEDICAL_LICENSE_NO" />
+          <ScalarProperty Name="CONTACT_NO" ColumnName="CONTACT_NO" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="REGISTERED_HOSPITAL" ColumnName="REGISTERED_HOSPITAL" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="JOINED_DATE" ColumnName="JOINED_DATE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="PROFILE_IMAGE" ColumnName="PROFILE_IMAGE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+          <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DONETION_EVENT">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.DONETION_EVENT">
+        <MappingFragment StoreEntitySet="DONETION_EVENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DONATION_EVENT_NAME" ColumnName="DONATION_EVENT_NAME" />
+          <ScalarProperty Name="DONATE_DATE" ColumnName="DONATE_DATE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DONETION_EVENT_ITEMS">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.DONETION_EVENT_ITEMS">
+        <MappingFragment StoreEntitySet="DONETION_EVENT_ITEMS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DONETION_EVENT_ID" ColumnName="DONETION_EVENT_ID" />
+          <ScalarProperty Name="GROCERY_ID" ColumnName="GROCERY_ID" />
+          <ScalarProperty Name="QTY_IN_GRAMS" ColumnName="QTY_IN_GRAMS" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ELDERs">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.ELDER">
+        <MappingFragment StoreEntitySet="ELDER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ELDER_CODE" ColumnName="ELDER_CODE" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="NIC" ColumnName="NIC" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="CONTACT_NO" ColumnName="CONTACT_NO" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+          <ScalarProperty Name="IS_DEAD" ColumnName="IS_DEAD" />
+          <ScalarProperty Name="PROFIL_PIC" ColumnName="PROFIL_PIC" />
+          <ScalarProperty Name="ROOM_NUMBER" ColumnName="ROOM_NUMBER" />
+          <ScalarProperty Name="CURRENT_SUGAR_LEVEL" ColumnName="CURRENT_SUGAR_LEVEL" />
+          <ScalarProperty Name="CURRENT_SUGAR_LEVEL_ENTER_DATE" ColumnName="CURRENT_SUGAR_LEVEL_ENTER_DATE" />
+          <ScalarProperty Name="IS_DIABITCS" ColumnName="IS_DIABITCS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ELDER_CHECKUP">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.ELDER_CHECKUP">
+        <MappingFragment StoreEntitySet="ELDER_CHECKUP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+          <ScalarProperty Name="CHECKUP_DATE" ColumnName="CHECKUP_DATE" />
+          <ScalarProperty Name="PURPOSE" ColumnName="PURPOSE" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="NEXT_FOLLOW_UP_DATE" ColumnName="NEXT_FOLLOW_UP_DATE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="CREATE_BY" ColumnName="CREATE_BY" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ELDER_GURDIAN">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.ELDER_GURDIAN">
+        <MappingFragment StoreEntitySet="ELDER_GURDIAN">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="E_GURDIAN_CODE" ColumnName="E_GURDIAN_CODE" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="RELATIONSHIP" ColumnName="RELATIONSHIP" />
+          <ScalarProperty Name="CONTACT_NO" ColumnName="CONTACT_NO" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FEEDBACKS">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.FEEDBACK">
+        <MappingFragment StoreEntitySet="FEEDBACKS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="CAREGIVER_ID" ColumnName="CAREGIVER_ID" />
+          <ScalarProperty Name="FEEDBACK_TYPE" ColumnName="FEEDBACK_TYPE" />
+          <ScalarProperty Name="FEEDBACK_DESC" ColumnName="FEEDBACK_DESC" />
+          <ScalarProperty Name="ADMIN_REPLY" ColumnName="ADMIN_REPLY" />
+          <ScalarProperty Name="REPLY_DATE" ColumnName="REPLY_DATE" />
+          <ScalarProperty Name="SUBMITED_DATE" ColumnName="SUBMITED_DATE" />
+          <ScalarProperty Name="FEEDBACK_ENTERED_USE" ColumnName="FEEDBACK_ENTERED_USE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GLUCODE_READING">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.GLUCODE_READING">
+        <MappingFragment StoreEntitySet="GLUCODE_READING">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="READING_DATE" ColumnName="READING_DATE" />
+          <ScalarProperty Name="GLUCOSE_LEVEL" ColumnName="GLUCOSE_LEVEL" />
+          <ScalarProperty Name="RECORDED_BY" ColumnName="RECORDED_BY" />
+          <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+          <ScalarProperty Name="SOURCE" ColumnName="SOURCE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GLUCOSE_READING_REPORT">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.GLUCOSE_READING_REPORT">
+        <MappingFragment StoreEntitySet="GLUCOSE_READING_REPORT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="GLUCODE_READING_ID" ColumnName="GLUCODE_READING_ID" />
+          <ScalarProperty Name="REPORT_UPLOAD_DATE" ColumnName="REPORT_UPLOAD_DATE" />
+          <ScalarProperty Name="REPORT" ColumnName="REPORT" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GROCERY_ITEM_NUTRICIANTS">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.GROCERY_ITEM_NUTRICIANTS">
+        <MappingFragment StoreEntitySet="GROCERY_ITEM_NUTRICIANTS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GROCERY_ITEMS_ID" ColumnName="GROCERY_ITEMS_ID" />
+          <ScalarProperty Name="CALORIES_kcal" ColumnName="CALORIES_kcal" />
+          <ScalarProperty Name="PROTEIN" ColumnName="PROTEIN" />
+          <ScalarProperty Name="CARBS" ColumnName="CARBS" />
+          <ScalarProperty Name="SUGAR" ColumnName="SUGAR" />
+          <ScalarProperty Name="FIBER" ColumnName="FIBER" />
+          <ScalarProperty Name="FAT_TOTAL" ColumnName="FAT_TOTAL" />
+          <ScalarProperty Name="FAT_SATURED" ColumnName="FAT_SATURED" />
+          <ScalarProperty Name="CHOLESTROL" ColumnName="CHOLESTROL" />
+          <ScalarProperty Name="SODIUM" ColumnName="SODIUM" />
+          <ScalarProperty Name="POTESSIUM" ColumnName="POTESSIUM" />
+          <ScalarProperty Name="IRON" ColumnName="IRON" />
+          <ScalarProperty Name="VITAMIN_A" ColumnName="VITAMIN_A" />
+          <ScalarProperty Name="VITAMIN_C" ColumnName="VITAMIN_C" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GROCERY_ITEMS">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.GROCERY_ITEMS">
+        <MappingFragment StoreEntitySet="GROCERY_ITEMS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BARCODE" ColumnName="BARCODE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="PICTURE" ColumnName="PICTURE" />
+          <ScalarProperty Name="FOOD_GROUP" ColumnName="FOOD_GROUP" />
+          <ScalarProperty Name="SOURCE" ColumnName="SOURCE" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+          <ScalarProperty Name="CREATE_BY" ColumnName="CREATE_BY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HEALTH_ALERT">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.HEALTH_ALERT">
+        <MappingFragment StoreEntitySet="HEALTH_ALERT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="ALERT_TYPE" ColumnName="ALERT_TYPE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="SUGGESTED_ACTION" ColumnName="SUGGESTED_ACTION" />
+          <ScalarProperty Name="NOTIFICATION_DATE" ColumnName="NOTIFICATION_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HEALTH_PREDICTION">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.HEALTH_PREDICTION">
+        <MappingFragment StoreEntitySet="HEALTH_PREDICTION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="PREDICTION_TYPE" ColumnName="PREDICTION_TYPE" />
+          <ScalarProperty Name="RISK_LEVEL" ColumnName="RISK_LEVEL" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INCREAMENTs">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.INCREAMENT">
+        <MappingFragment StoreEntitySet="INCREAMENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="PAD" ColumnName="PAD" />
+          <ScalarProperty Name="NO" ColumnName="NO" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MDCODEs">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.MDCODE">
+        <MappingFragment StoreEntitySet="MDCODE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MEAL_PLANS">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.MEAL_PLANS">
+        <MappingFragment StoreEntitySet="MEAL_PLANS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="PLAN_DATE" ColumnName="PLAN_DATE" />
+          <ScalarProperty Name="PLAN_TYPE" ColumnName="PLAN_TYPE" />
+          <ScalarProperty Name="RECOMENDED_DOC_ID" ColumnName="RECOMENDED_DOC_ID" />
+          <ScalarProperty Name="CREATE_BY" ColumnName="CREATE_BY" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MEAL_PLANS_ITEMS">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.MEAL_PLANS_ITEMS">
+        <MappingFragment StoreEntitySet="MEAL_PLANS_ITEMS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MEAL_PLAN_ID" ColumnName="MEAL_PLAN_ID" />
+          <ScalarProperty Name="GROCEY_ID" ColumnName="GROCEY_ID" />
+          <ScalarProperty Name="QUANTITY_IN_GRAMS" ColumnName="QUANTITY_IN_GRAMS" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROOM_ASSIGNED">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.ROOM_ASSIGNED">
+        <MappingFragment StoreEntitySet="ROOM_ASSIGNED">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ROOM_ID" ColumnName="ROOM_ID" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="ASSIGNED_DATE" ColumnName="ASSIGNED_DATE" />
+          <ScalarProperty Name="RELEASED_DATE" ColumnName="RELEASED_DATE" />
+          <ScalarProperty Name="ASSIGNED_BY" ColumnName="ASSIGNED_BY" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="ENTED_DATE" ColumnName="ENTED_DATE" />
+          <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROOMS">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.ROOM">
+        <MappingFragment StoreEntitySet="ROOMS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ROOM_NUMBER" ColumnName="ROOM_NUMBER" />
+          <ScalarProperty Name="FLOOR_NUMBER" ColumnName="FLOOR_NUMBER" />
+          <ScalarProperty Name="ROOM_TYPE" ColumnName="ROOM_TYPE" />
+          <ScalarProperty Name="CAPACITY" ColumnName="CAPACITY" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="APP_USER">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.APP_USER">
+        <MappingFragment StoreEntitySet="APP_USER">
+          <ScalarProperty Name="PIC" ColumnName="PIC" />
+          <ScalarProperty Name="REF_ID" ColumnName="REF_ID" />
+          <ScalarProperty Name="ENTER_USER" ColumnName="ENTER_USER" />
+          <ScalarProperty Name="ENTER_DATE" ColumnName="ENTER_DATE" />
+          <ScalarProperty Name="LOGIN_ATTEMPT" ColumnName="LOGIN_ATTEMPT" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PROC_INCREMENT_ID" FunctionName="ELDER_NUTRICIANTSModel.Store.PROC_INCREMENT_ID" />
+    <FunctionImportMapping FunctionImportName="PROC_INCREMENT_ID_UPADATE" FunctionName="ELDER_NUTRICIANTSModel.Store.PROC_INCREMENT_ID_UPADATE" />
+    <EntitySetMapping Name="COMPANies">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.COMPANY">
+        <MappingFragment StoreEntitySet="COMPANY">
+          <ScalarProperty Name="WEBSITE" ColumnName="WEBSITE" />
+          <ScalarProperty Name="EMAIL_PASSWORD" ColumnName="EMAIL_PASSWORD" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TEL2" ColumnName="TEL2" />
+          <ScalarProperty Name="TEL1" ColumnName="TEL1" />
+          <ScalarProperty Name="ADDRESS2" ColumnName="ADDRESS2" />
+          <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
+          <ScalarProperty Name="COMPANYNAME" ColumnName="COMPANYNAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_ELDER">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.V_ELDER">
+        <MappingFragment StoreEntitySet="V_ELDER">
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="G_CONTACT_NO" ColumnName="G_CONTACT_NO" />
+          <ScalarProperty Name="RELATIONSHIP" ColumnName="RELATIONSHIP" />
+          <ScalarProperty Name="G_FULL_NAME" ColumnName="G_FULL_NAME" />
+          <ScalarProperty Name="E_GURDIAN_CODE" ColumnName="E_GURDIAN_CODE" />
+          <ScalarProperty Name="IS_DIABITCS" ColumnName="IS_DIABITCS" />
+          <ScalarProperty Name="CURRENT_SUGAR_LEVEL_ENTER_DATE" ColumnName="CURRENT_SUGAR_LEVEL_ENTER_DATE" />
+          <ScalarProperty Name="CURRENT_SUGAR_LEVEL" ColumnName="CURRENT_SUGAR_LEVEL" />
+          <ScalarProperty Name="ROOM_NUMBER" ColumnName="ROOM_NUMBER" />
+          <ScalarProperty Name="PROFIL_PIC" ColumnName="PROFIL_PIC" />
+          <ScalarProperty Name="IS_DEAD" ColumnName="IS_DEAD" />
+          <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="CONTACT_NO" ColumnName="CONTACT_NO" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="NIC" ColumnName="NIC" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="ELDER_CODE" ColumnName="ELDER_CODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_ELDER_BLOOD_RPT">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.V_ELDER_BLOOD_RPT">
+        <MappingFragment StoreEntitySet="V_ELDER_BLOOD_RPT">
+          <ScalarProperty Name="REPORT" ColumnName="REPORT" />
+          <ScalarProperty Name="REPORT_UPLOAD_DATE" ColumnName="REPORT_UPLOAD_DATE" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="SOURCE" ColumnName="SOURCE" />
+          <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+          <ScalarProperty Name="RECORDED_BY" ColumnName="RECORDED_BY" />
+          <ScalarProperty Name="GLUCOSE_LEVEL" ColumnName="GLUCOSE_LEVEL" />
+          <ScalarProperty Name="READING_DATE" ColumnName="READING_DATE" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CAREGIVER_ASSIGN_ELDER">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.CAREGIVER_ASSIGN_ELDER">
+        <MappingFragment StoreEntitySet="CAREGIVER_ASSIGN_ELDER">
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="ASSIGNED_BY" ColumnName="ASSIGNED_BY" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="CAREGIVER_ID" ColumnName="CAREGIVER_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_ASSIGN_CAREGIVER">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.V_ASSIGN_CAREGIVER">
+        <MappingFragment StoreEntitySet="V_ASSIGN_CAREGIVER">
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="ASSIGNED_BY" ColumnName="ASSIGNED_BY" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="CAREGIVER_ID" ColumnName="CAREGIVER_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PROFILE_IMG" ColumnName="PROFILE_IMG" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="CAREGIVER_CODE" ColumnName="CAREGIVER_CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_ASSIGN_ROOMS">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.V_ASSIGN_ROOMS">
+        <MappingFragment StoreEntitySet="V_ASSIGN_ROOMS">
+          <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+          <ScalarProperty Name="ENTED_DATE" ColumnName="ENTED_DATE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="ASSIGNED_BY" ColumnName="ASSIGNED_BY" />
+          <ScalarProperty Name="ASSIGNED_DATE" ColumnName="ASSIGNED_DATE" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="ROOM_ID" ColumnName="ROOM_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CAPACITY" ColumnName="CAPACITY" />
+          <ScalarProperty Name="ROOM_TYPE" ColumnName="ROOM_TYPE" />
+          <ScalarProperty Name="ROOM_NUMBER" ColumnName="ROOM_NUMBER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ELDER_DEATH">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.ELDER_DEATH">
+        <MappingFragment StoreEntitySet="ELDER_DEATH">
+          <ScalarProperty Name="ENTER_DATE" ColumnName="ENTER_DATE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="REPORTED_BY" ColumnName="REPORTED_BY" />
+          <ScalarProperty Name="PLACE_OF_DEATH" ColumnName="PLACE_OF_DEATH" />
+          <ScalarProperty Name="CAUSE_OF_DEATH" ColumnName="CAUSE_OF_DEATH" />
+          <ScalarProperty Name="TIME_OF_DEATH" ColumnName="TIME_OF_DEATH" />
+          <ScalarProperty Name="DATE_OF_DEATH" ColumnName="DATE_OF_DEATH" />
+          <ScalarProperty Name="ELDER_ID" ColumnName="ELDER_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GROCERY_ITEM_CATEGORY">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.GROCERY_ITEM_CATEGORY">
+        <MappingFragment StoreEntitySet="GROCERY_ITEM_CATEGORY">
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_MEALS">
+      <EntityTypeMapping TypeName="ELDER_NUTRICIANTSModel.V_MEALS">
+        <MappingFragment StoreEntitySet="V_MEALS">
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CREATE_BY" ColumnName="CREATE_BY" />
+          <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="SOURCE" ColumnName="SOURCE" />
+          <ScalarProperty Name="FOOD_GROUP" ColumnName="FOOD_GROUP" />
+          <ScalarProperty Name="PICTURE" ColumnName="PICTURE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="BARCODE" ColumnName="BARCODE" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

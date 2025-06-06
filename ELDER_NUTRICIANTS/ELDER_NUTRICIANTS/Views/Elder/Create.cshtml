@@ -1,0 +1,316 @@
+﻿@model ELDER_NUTRICIANTS.Models.ElderVM
+
+@{
+    ViewBag.Title = "Create";
+    var maxDate = DateTime.Now.AddYears(-18).ToString("yyyy-MM-dd");
+}
+
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
+                        <h6 class="text-white text-capitalize ps-3 mb-0">Add New Elder</h6>
+                        <div class="d-flex align-items-center me-3">
+                            <a href="@Url.Action("Index", "Elder")" class="btn btn-white btn-sm">
+                                <i class="material-symbols-rounded me-1">arrow_back</i> Back to List
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-4">
+                    @using (Html.BeginForm("Create", "Elder", FormMethod.Post, new { enctype = "multipart/form-data", id = "caregiverForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="card">
+                                    <div class="card-header p-3 pb-0">
+                                        <h5 class="mb-0">Elder Personal Information</h5>
+                                        <p class="text-sm mb-0">Enter elder's personal details</p>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">Full Name</label>
+                                                    @Html.TextBoxFor(model => model.FULL_NAME, new { @class = "form-control", required = "required" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="my-3">
+                                                    <label class="ms-0">Gender <span class="text-danger">*</span></label>
+                                                    <div class="form-check form-check-inline mt-2">
+                                                        @Html.RadioButtonFor(model => model.GENDER, "MALE", new { @class = "form-check-input", id = "male", required = "required" })
+                                                        <label class="form-check-label" for="male">MALE</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        @Html.RadioButtonFor(model => model.GENDER, "FEMALE", new { @class = "form-check-input", id = "female" })
+                                                        <label class="form-check-label" for="female">FEMALE</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">NIC</label>
+                                                    @Html.TextBoxFor(model => model.NIC, new
+                                                    {
+      @class = "form-control",
+      required = "required",
+      pattern = @"^(\d{9}[VXvx]|\d{12})$",
+      title = "Enter 9 digits followed by V/X (e.g., 123456789V) or 13 digits (e.g., 2000123456789)"
+  })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-static my-3">
+                                                    <label>Date of Birth</label>
+                                                    @Html.TextBoxFor(model => model.DOB, "{0:yyyy-MM-dd}", new
+                                                    {
+      @class = "form-control",
+      type = "date",
+      required = "required",
+      max = maxDate
+  })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                           
+                                            <div class="col-md-12">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">Contact Number</label>
+                                                    @Html.TextBoxFor(model => model.CONTACT_NO, new
+                                                    {
+          @class = "form-control",
+          required = "required",
+          pattern = @"^\d{10}$",
+          title = "Enter a valid 10-digit contact number (e.g., 0771234567)"
+      })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group input-group-outline mb-3">
+                                            <label class="form-label">Address</label>
+                                            @Html.TextAreaFor(model => model.ADDRESS, new { @class = "form-control", rows = "3", required = "required" })
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="card mt-4">
+                                    <div class="card-header p-3 pb-0">
+                                        <h5 class="mb-0">Elder Gurdian Personal Information</h5>
+                                        <p class="text-sm mb-0">Enter gurdian's personal details</p>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">Gurdian Full Name</label>
+                                                    @Html.TextBoxFor(model => model.G_FULL_NAME, new { @class = "form-control", required = "required" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-outline my-3">
+
+                                                    @Html.DropDownListFor(model => model.RELATIONSHIP, (SelectList)ViewBag.Relationship, "-Select Relationship-", new
+                                   {
+                                       @class = "form-control",
+                                       required = "required"
+                                   })
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">Gurdian Contact Number</label>
+                                                    @Html.TextBoxFor(model => model.G_CONTACT_NO, new
+                                                    {
+          @class = "form-control",
+          required = "required",
+          pattern = @"^\d{10}$",
+          title = "Enter a valid 10-digit contact number (e.g., 0771234567)"
+      })
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">Gurdian Email</label>
+                                                    @Html.TextBoxFor(model => model.EMAIL, new { @class = "form-control", type = "email" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                                <div class="input-group input-group-outline my-3">
+                                                    <label class="form-label">Gurdian Address</label>
+                                                    @Html.TextAreaFor(model => model.G_ADDRESS, new { @class = "form-control", rows = "3", required = "required" })
+
+                                                </div>
+                                            </div>
+
+                                            
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-header p-3 pb-0">
+                                        <h5 class="mb-0">Profile Image</h5>
+                                        <p class="text-sm mb-0">Upload elder's photo</p>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="text-center mt-3">
+                                            <div class="avatar-preview mb-3">
+                                                <img src="/content/img/default-avatar.jpg" id="imagePreview" class="rounded-circle shadow-sm" width="150" height="150" style="object-fit: cover;">
+                                            </div>
+                                            <div class="input-group">
+                                                <label class="btn btn-outline-primary btn-sm mb-0" for="Img_File_F">
+                                                    <i class="material-symbols-rounded me-1">upload</i> Choose Image
+                                                </label>
+                                                @Html.TextBoxFor(model => model.Img_File_F, new { type = "file", @class = "form-control d-none", accept = "image/*" })
+                                                <span id="file-name" class="ms-2 text-sm text-secondary">No file chosen</span>
+                                            </div>
+                                            <p class="text-xs text-secondary mt-2">Recommended: Square image, 300x300 pixels or larger</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mt-4">
+
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex flex-column gap-2">
+                                            <button id="saveBtn" type="submit" class="btn btn-success w-100 mb-0" >
+                                                <i class="material-symbols-rounded me-1">save</i> Save Elder
+                                            </button>
+                                            <a href="@Url.Action("Index", "Elder")" class="btn btn-outline-secondary w-100 mb-0">
+                                                <i class="material-symbols-rounded me-1">cancel</i> Cancel
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Image preview functionality
+        document.getElementById('Img_File_F').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('file-name').textContent = file.name;
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('imagePreview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('file-name').textContent = 'No file chosen';
+                document.getElementById('imagePreview').src = '/content/img/default-avatar.jpg';
+            }
+        });
+
+      
+
+        // Initialize floating labels for filled inputs
+        const initInputs = document.querySelectorAll('.input-group-outline input, .input-group-outline textarea');
+        initInputs.forEach(input => {
+            if (input.value !== '') {
+                input.parentElement.classList.add('is-filled');
+            }
+
+            input.addEventListener('focus', function () {
+                this.parentElement.classList.add('is-focused');
+            });
+
+            input.addEventListener('blur', function () {
+                this.parentElement.classList.remove('is-focused');
+                if (this.value !== '') {
+                    this.parentElement.classList.add('is-filled');
+                } else {
+                    this.parentElement.classList.remove('is-filled');
+                }
+            });
+        });
+    });
+
+
+   
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+    // Configuration for toast notifications
+    const toastConfig = {
+        closeButton: true,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "5000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    };
+
+    // Apply global configuration
+    toastr.options = toastConfig;
+
+    // Process different notification types
+    const notifications = [
+        { type: 'success', message: '@Html.Raw(Json.Encode(TempData["Alert"]))', title: "Success" },
+        { type: 'error', message: '@Html.Raw(Json.Encode(TempData["Alert1"]))', title: "Error" },
+        { type: 'info', message: '@Html.Raw(Json.Encode(TempData["InfoAlert"]))', title: "Information" },
+        { type: 'warning', message: '@Html.Raw(Json.Encode(TempData["WarningAlert"]))', title: "Warning" }
+    ];
+
+    // Process and display each notification if it exists
+    notifications.forEach(notification => {
+        const message = notification.message;
+        if (message && message !== "null" && message !== "") {
+            // Show toast with appropriate type
+            toastr[notification.type](message, notification.title);
+
+            // Log for debugging (optional)
+            console.log(`${notification.title} notification displayed: ${message}`);
+        }
+    });
+
+    // Add click handler to allow users to dismiss notifications manually
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.toast-close-button')) {
+            console.log('Notification manually dismissed by user');
+        }
+    });
+});
+</script>
